@@ -1,33 +1,364 @@
-body, html {
-    height: 100%;
+// Variables
+$darkColor: #000044;
+$lightColor: #ddddFF;
+$buttonColor: #ececec;
+$activeButtonColor: rgba(255, 255, 255, 0.322);
+$fontFamily: 'NTR', sans-serif;
+$fontSize: 14px;
+$fontWeight: 400;
+$transition: background-color 1s, color 1s;
+
+// Mixin pour media query
+@mixin respond($breakpoint) {
+    @if $breakpoint==phone {
+        @media (max-width: 413px) {
+            @content;
+        }
+    }
+
+    @else if $breakpoint==dark {
+        @media (prefers-color-scheme: dark) {
+            @content;
+        }
+    }
+
+    @else if $breakpoint==light {
+        @media (prefers-color-scheme: light) {
+            @content;
+        }
+    }
+}
+
+// Styles
+img {
+    background-image: url("/src/img/logo-dark.png");
+    transition: opacity 3s ease-in-out;
+}
+
+li {
+    padding: 2px;
+}
+
+body {
+    font-family: $fontFamily;
+    font-size: $fontSize;
+    font-weight: $fontWeight;
+    transition: $transition;
     margin: 0;
-    padding: 0;
+    color: $darkColor;
+
+    @include respond(dark) {
+        background-color: $darkColor;
+        color: $lightColor;
+    }
+
+    @include respond(light) {
+        background-color: $lightColor;
+        color: $darkColor;
+    }
 }
 
-.backgroundDivContainer {
+#container {
+    display: flex;
     width: 100%;
-    height: 100%;
+    justify-items: center;
 }
 
-#backgroundDiv {
+#menu {
+    z-index: 10;
     width: 100%;
-    height: 100%;
-    background-image: url("../img/fond2.png");
-    background-size: 200% 100%;
-    background-position: 0 0;
-    transition: background-position 2s ease-in-out;
+    display: flex;
+    margin: 0 auto 2.5rem auto;
+    padding-left: 50px;
+    padding-right: 3.125rem;
+    padding-top: 20px;
+    box-sizing: border-box;
 }
 
-#moveBtn {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    background-image: url('../img/bt-light.png');
-    background-repeat: no-repeat;
-    background-position: center;
-    width: 100px; // set your desired width
-    height: 50px; // set your desired height
+#logo {
+    margin-right: 1.875rem;
+}
+
+.btCenter {
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+#main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    padding: 0.625rem;
+}
+
+#myInput {
+    width: 12.5rem;
+    height: 2.1875rem;
     border: none;
-    color: transparent;
-    transition: background-image 0.3s ease-in-out;
+    border-radius: 0.3125rem;
+    background-color: $buttonColor;
+    padding-left: 0.625rem;
+}
+
+#btSubmit {
+    background-color: $buttonColor;
+    border-radius: 0.3125rem;
+    border: none;
+    height: 36px;
+    padding: 0 0.625rem 0 0.625rem;
+}
+
+#btSubmit:hover {
+    background-color: $activeButtonColor;
+    border: 1px solid #b0b0b0;
+}
+
+.switch-toggle {
+    width: 18.75rem;
+    background: transparent;
+    position: relative;
+    border-radius: 0.1875rem;
+}
+
+.switch-toggle.theme-switch {
+    width: 12.5rem;
+}
+
+.switch-toggle input {
+    display: none;
+}
+
+.switch-toggle label {
+    float: left;
+    width: 33.33%;
+    line-height: 2.5rem;
+    color: $darkColor;
+    text-align: center;
+    background: $buttonColor;
+    border-radius: 0.1875rem;
+    cursor: pointer;
+}
+
+.switch-toggle input:checked+label {
+    background: $buttonColor;
+    color: $darkColor;
+}
+
+.btn-switch {
+    display: block;
+    width: 33.33%;
+    height: 2.5rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: $activeButtonColor;
+    color: $darkColor;
+    border-radius: 0.1875rem;
+    transition: all 0.3s ease-in-out;
+    border: 1px solid #6f6d6d;
+}
+
+.theme-switch>.btn-switch {
+    display: block;
+    width: 50%;
+    height: 2.5rem;
+    position: absolute;
+    top: 0;
+    left: 0%;
+    background: $activeButtonColor;
+    color: $darkColor;
+    border-radius: 0.1875rem;
+    transition: all 0.3s ease-in-out;
+    border: 1px solid #6f6d6d;
+}
+
+.switch-toggle.theme-switch label {
+    float: left;
+    width: 50%;
+    color: $darkColor;
+    text-align: center;
+    background: $buttonColor;
+    border-radius: 0.1875rem;
+    cursor: pointer;
+}
+
+#sherif:checked~.btn-switch {
+    transform: translateX(0);
+}
+
+#sanssherif:checked~.btn-switch {
+    transform: translateX(6.25rem);
+}
+
+#monospace:checked~.btn-switch {
+    transform: translateX(12.5rem);
+}
+
+#lightTheme:checked~.btn-switch {
+    transform: translateX(0);
+}
+
+#darkTheme:checked~.btn-switch {
+    transform: translateX(100%);
+}
+
+#word {
+    text-align: center;
+    grid-area: 1 / 1;
+    text-transform: capitalize;
+    font-size: 52px;
+}
+
+#audio {
+    margin-top: 25px;
+    grid-area: 1 / 2;
+}
+
+#synonyms {
+    grid-area: 2 / 1;
+}
+
+#antonyms {
+    grid-area: 2 / 2;
+}
+
+#defs {
+    margin-top: 1.875rem;
+    grid-area: 3 / 2 span;
+    display: flex;
+    flex-direction: column;
+}
+
+#tabs {
+    position: relative;
+}
+
+.tab {
+    color: $darkColor;
+    text-transform: capitalize;
+    display: inline-block;
+    cursor: pointer;
+    background-color: $buttonColor;
+    border-radius: 0.1875rem;
+}
+
+.tab.active {
+    cursor: default;
+    width: auto;
+    top: 0;
+    left: 1.5%;
+    color: $darkColor;
+    border-radius: 0.1875rem;
+}
+
+.tab-light {
+    color: $darkColor;
+    padding: 10px 10px 10px 10px;
+    cursor: pointer;
+    background-color: $buttonColor;
+    color: $darkColor;
+    border-radius: 0.1875rem;
+}
+
+.tab-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: $activeButtonColor;
+    color: $darkColor;
+    border-radius: 0.1875rem;
+    border: 1px solid;
+    transition: left 0.3s ease-in-out, width 0.3s ease-in-out;
+    height: 100%;
+}
+
+.def {
+    display: none;
+    text-align: justify;
+}
+
+.def.active {
+    display: block;
+}
+
+a {
+    color: blue;
+}
+
+a:hover {
+    color: rgb(43, 142, 56);
+}
+
+#erreur {
+    height: 20px;
+    text-align: center;
+    width: 100%;
+    color: red;
+}
+
+/* Media Queries */
+@media (max-width: 413px) {
+    #menu {
+        flex-direction: column;
+        justify-items: center;
+        width: 95%;
+        padding: 0;
+    }
+
+    #logo {
+        height: 2.8125rem;
+        margin-right: 0;
+    }
+
+    #main {
+        width: 90%;
+        grid-template-columns: 1fr;
+    }
+
+    #word {
+        margin: 0 0 1.875rem 0;
+        text-align: center;
+        grid-area: 1;
+        text-transform: capitalize;
+        font-size: 3rem;
+    }
+
+    #audio {
+        text-align: center;
+        grid-area: 2;
+    }
+
+    #synonyms {
+        grid-area: 3;
+    }
+
+    #antonyms {
+        grid-area: 4;
+    }
+
+    #defs {
+        grid-area: 5;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+
+    /* Styles spécifiques pour le mode sombre */
+    body {
+        background-color: $darkColor;
+        color: $lightColor;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+
+    /* Styles spécifiques pour le mode clair */
+    body {
+        background-color: $lightColor;
+        color: $darkColor;
+    }
 }

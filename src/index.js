@@ -1,5 +1,4 @@
-import './assets/scss/style.scss';
-import "./index.js";
+import './scss/style.scss';
 import getAPIResponse from './api-dico.js';
 const form = document.querySelector('form');
 const input = document.getElementById('myInput');
@@ -32,11 +31,11 @@ form.addEventListener('submit', function (event) {
 });
 
 // Evénement changement de thème
-document.getElementById('lightTheme').addEventListener('click', function() {
+document.getElementById('lightTheme').addEventListener('click', function () {
     isDark = false;
     swapTheme();
 });
-document.getElementById('darkTheme').addEventListener('click', function() {
+document.getElementById('darkTheme').addEventListener('click', function () {
     isDark = true;
     swapTheme();
 });
@@ -51,16 +50,19 @@ document.addEventListener('click', function (event) {
     }
 });
 
+
+let def = document.getElementById('def');
 // Evénement changement de police 
 document.querySelectorAll('.switch-toggle input[type="radio"]').forEach(input => {
     input.addEventListener('change', function (e) {
         switch (e.target.id) {
-            case 'sherif':
-                def.style.fontFamily = "serif";
-                break;
             case 'sanssherif':
                 def.style.fontFamily = "sans-serif";
                 break;
+            case 'sherif':
+                def.style.fontFamily = "serif";
+                break;
+
             case 'monospace':
                 def.style.fontFamily = "monospace";
                 break;

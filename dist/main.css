@@ -1,10 +1,6 @@
-/*!*********************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/assets/scss/style.scss ***!
-  \*********************************************************************************************************************/
-@import url(https://fonts.googleapis.com/css2?family=NTR&display=swap);
-/*!*************************************************************************************************************************!*\
-  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/assets/scss/style.scss (1) ***!
-  \*************************************************************************************************************************/
+/*!**************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/scss/style.scss ***!
+  \**************************************************************************************************************/
 @charset "UTF-8";
 img {
   background-image: url(src/img/logo-dark.png);
@@ -16,26 +12,36 @@ li {
 }
 
 body {
+  font-family: "NTR", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
   transition: background-color 1s, color 1s;
   margin: 0;
-  color: #000000;
+  color: #000044;
+}
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #000044;
+    color: #ddddFF;
+  }
+}
+@media (prefers-color-scheme: light) {
+  body {
+    background-color: #ddddFF;
+    color: #000044;
+  }
 }
 
 #container {
   display: flex;
   width: 100%;
   justify-items: center;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
 }
 
 #menu {
   z-index: 10;
-  font-family: "NTR", sans-serif;
   width: 100%;
   display: flex;
-  align-items: start;
   margin: 0 auto 2.5rem auto;
   padding-left: 50px;
   padding-right: 3.125rem;
@@ -51,20 +57,15 @@ body {
   width: 100%;
   margin-top: 10px;
   display: flex;
-  text-align: center;
   justify-content: center;
-  align-items: center;
-  align-content: center;
 }
 
 #main {
-  font-weight: 600;
   display: grid;
   grid-template-columns: 1fr 1fr;
   margin-left: auto;
   margin-right: auto;
   width: 70%;
-  align-items: left;
   padding: 0.625rem;
 }
 
@@ -73,23 +74,20 @@ body {
   height: 2.1875rem;
   border: none;
   border-radius: 0.3125rem;
-  background-color: #eeeeee;
+  background-color: #ececec;
   padding-left: 0.625rem;
 }
 
 #btSubmit {
-  font-family: "NTR", sans-serif;
-  font-size: 16px;
-  background-color: #e5e5e5;
-  font-weight: 700;
+  background-color: #ececec;
   border-radius: 0.3125rem;
   border: none;
-  height: 2.5rem;
+  height: 36px;
   padding: 0 0.625rem 0 0.625rem;
 }
 
 #btSubmit:hover {
-  background-color: #eeeeee;
+  background-color: rgba(255, 255, 255, 0.322);
   border: 1px solid #b0b0b0;
 }
 
@@ -112,18 +110,16 @@ body {
   float: left;
   width: 33.33%;
   line-height: 2.5rem;
-  font-size: 1rem;
-  font-weight: 700;
-  color: #000000;
+  color: #000044;
   text-align: center;
-  background: #e5e5e5;
+  background: #ececec;
   border-radius: 0.1875rem;
   cursor: pointer;
 }
 
 .switch-toggle input:checked + label {
-  background: #e5e5e5;
-  color: #000000;
+  background: #ececec;
+  color: #000044;
 }
 
 .btn-switch {
@@ -133,8 +129,8 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  background: rgba(255, 255, 255, 0.33);
-  color: #000000;
+  background: rgba(255, 255, 255, 0.322);
+  color: #000044;
   border-radius: 0.1875rem;
   transition: all 0.3s ease-in-out;
   border: 1px solid #6f6d6d;
@@ -147,8 +143,8 @@ body {
   position: absolute;
   top: 0;
   left: 0%;
-  background: rgba(255, 255, 255, 0.33);
-  color: #000000;
+  background: rgba(255, 255, 255, 0.322);
+  color: #000044;
   border-radius: 0.1875rem;
   transition: all 0.3s ease-in-out;
   border: 1px solid #6f6d6d;
@@ -157,12 +153,9 @@ body {
 .switch-toggle.theme-switch label {
   float: left;
   width: 50%;
-  line-height: 2.5rem;
-  font-size: 1rem;
-  font-weight: 700;
-  color: #000000;
+  color: #000044;
   text-align: center;
-  background: #e5e5e5;
+  background: #ececec;
   border-radius: 0.1875rem;
   cursor: pointer;
 }
@@ -188,7 +181,6 @@ body {
 }
 
 #word {
-  font-family: "NTR", sans-serif;
   text-align: center;
   grid-area: 1/1;
   text-transform: capitalize;
@@ -201,17 +193,14 @@ body {
 }
 
 #synonyms {
-  font-family: "NTR", sans-serif;
   grid-area: 2/1;
 }
 
 #antonyms {
-  font-family: "NTR", sans-serif;
   grid-area: 2/2;
 }
 
 #defs {
-  font-family: "NTR", sans-serif;
   margin-top: 1.875rem;
   grid-area: 3/2 span;
   display: flex;
@@ -219,18 +208,15 @@ body {
 }
 
 #tabs {
-  font-family: "NTR", sans-serif;
   position: relative;
 }
 
 .tab {
-  color: #000000;
+  color: #000044;
   text-transform: capitalize;
   display: inline-block;
   cursor: pointer;
-  font-size: 0.875rem;
-  font-weight: 700;
-  background-color: #a7a7a7;
+  background-color: #ececec;
   border-radius: 0.1875rem;
 }
 
@@ -239,21 +225,16 @@ body {
   width: auto;
   top: 0;
   left: 1.5%;
-  color: #000000;
+  color: #000044;
   border-radius: 0.1875rem;
 }
 
 .tab-light {
-  color: #000000;
-  text-transform: capitalize;
-  display: inline-block;
-  padding: 0px 10px 0px 10px;
+  color: #000044;
+  padding: 10px 10px 10px 10px;
   cursor: pointer;
-  font-size: 1rem;
-  font-weight: 700;
-  font-size: 1.125rem;
-  background-color: #e5e5e5;
-  color: #000000;
+  background-color: #ececec;
+  color: #000044;
   border-radius: 0.1875rem;
 }
 
@@ -261,17 +242,15 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  background-color: rgba(250, 250, 250, 0.25);
-  color: #000000;
+  background-color: rgba(255, 255, 255, 0.322);
+  color: #000044;
   border-radius: 0.1875rem;
-  border: 1px solid #6f6d6d;
+  border: 1px solid;
   transition: left 0.3s ease-in-out, width 0.3s ease-in-out;
   height: 100%;
 }
 
 .def {
-  font-size: 1.125rem;
-  padding: 0.625rem 1.875rem 0.625rem 1.875rem;
   display: none;
   text-align: justify;
 }
@@ -281,7 +260,6 @@ body {
 }
 
 a {
-  font-size: 18px;
   color: blue;
 }
 
@@ -291,13 +269,12 @@ a:hover {
 
 #erreur {
   height: 20px;
-  font-size: 1rem;
   text-align: center;
   width: 100%;
   color: red;
 }
 
-/*-------------------------------------------------------------------------------------------------*/
+/* Media Queries */
 @media (max-width: 413px) {
   #menu {
     flex-direction: column;
@@ -337,14 +314,14 @@ a:hover {
 @media (prefers-color-scheme: dark) {
   /* Styles spécifiques pour le mode sombre */
   body {
-    background-color: #000000;
-    color: #FFFFFF;
+    background-color: #000044;
+    color: #ddddFF;
   }
 }
 @media (prefers-color-scheme: light) {
   /* Styles spécifiques pour le mode clair */
   body {
-    background-color: #FFFFFF;
-    color: #000000;
+    background-color: #ddddFF;
+    color: #000044;
   }
 }
