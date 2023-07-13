@@ -3,10 +3,14 @@ $darkColor: #000044;
 $lightColor: #ddddFF;
 $buttonColor: #ececec;
 $activeButtonColor: rgba(255, 255, 255, 0.322);
-$fontFamily: 'NTR', sans-serif;
+$fontFamily: 'NTR',
+sans-serif;
 $fontSize: 14px;
 $fontWeight: 400;
-$transition: background-color 1s, color 1s;
+$transition: background-color 1s,
+color 1s;
+$borderRadius: 4px;
+$border: 1px solid #377c2e;
 
 // Mixin pour media query
 @mixin respond($breakpoint) {
@@ -84,6 +88,7 @@ body {
     margin-top: 10px;
     display: flex;
     justify-content: center;
+    flex-wrap: nowrap;
 }
 
 #main {
@@ -96,17 +101,17 @@ body {
 }
 
 #myInput {
+    border-radius: $borderRadius;
     width: 12.5rem;
-    height: 2.1875rem;
+    height: 35px;
     border: none;
-    border-radius: 0.3125rem;
     background-color: $buttonColor;
     padding-left: 0.625rem;
 }
 
 #btSubmit {
+    border-radius: $borderRadius;
     background-color: $buttonColor;
-    border-radius: 0.3125rem;
     border: none;
     height: 36px;
     padding: 0 0.625rem 0 0.625rem;
@@ -114,18 +119,17 @@ body {
 
 #btSubmit:hover {
     background-color: $activeButtonColor;
-    border: 1px solid #b0b0b0;
+    border: $border;
 }
 
 .switch-toggle {
-    width: 18.75rem;
+    width: 300px;
     background: transparent;
     position: relative;
-    border-radius: 0.1875rem;
 }
 
 .switch-toggle.theme-switch {
-    width: 12.5rem;
+    width: 200px;
 }
 
 .switch-toggle input {
@@ -133,13 +137,14 @@ body {
 }
 
 .switch-toggle label {
+    height: 35px;
+    border-radius: $borderRadius;
     float: left;
-    width: 33.33%;
+    width: 33.333%;
     line-height: 2.5rem;
     color: $darkColor;
     text-align: center;
     background: $buttonColor;
-    border-radius: 0.1875rem;
     cursor: pointer;
 }
 
@@ -149,31 +154,30 @@ body {
 }
 
 .btn-switch {
+    border-radius: $borderRadius;
     display: block;
-    width: 33.33%;
-    height: 2.5rem;
+    width: 33.333%;
+    height: 35px;
     position: absolute;
     top: 0;
     left: 0;
     background: $activeButtonColor;
     color: $darkColor;
-    border-radius: 0.1875rem;
     transition: all 0.3s ease-in-out;
-    border: 1px solid #6f6d6d;
+    border: $border;
 }
 
 .theme-switch>.btn-switch {
     display: block;
-    width: 50%;
-    height: 2.5rem;
+    width: 49%;
+    height: 35px;
     position: absolute;
     top: 0;
     left: 0%;
     background: $activeButtonColor;
     color: $darkColor;
-    border-radius: 0.1875rem;
     transition: all 0.3s ease-in-out;
-    border: 1px solid #6f6d6d;
+    border: $border;
 }
 
 .switch-toggle.theme-switch label {
@@ -182,7 +186,6 @@ body {
     color: $darkColor;
     text-align: center;
     background: $buttonColor;
-    border-radius: 0.1875rem;
     cursor: pointer;
 }
 
@@ -214,7 +217,6 @@ body {
 }
 
 #audio {
-    margin-top: 25px;
     grid-area: 1 / 2;
 }
 
@@ -238,12 +240,12 @@ body {
 }
 
 .tab {
+    border-radius: $borderRadius;
     color: $darkColor;
     text-transform: capitalize;
     display: inline-block;
     cursor: pointer;
     background-color: $buttonColor;
-    border-radius: 0.1875rem;
 }
 
 .tab.active {
@@ -252,7 +254,6 @@ body {
     top: 0;
     left: 1.5%;
     color: $darkColor;
-    border-radius: 0.1875rem;
 }
 
 .tab-light {
@@ -261,17 +262,16 @@ body {
     cursor: pointer;
     background-color: $buttonColor;
     color: $darkColor;
-    border-radius: 0.1875rem;
 }
 
 .tab-indicator {
+    border-radius: $borderRadius;
     position: absolute;
     top: 0;
     left: 0;
     background-color: $activeButtonColor;
     color: $darkColor;
-    border-radius: 0.1875rem;
-    border: 1px solid;
+    border: $border;
     transition: left 0.3s ease-in-out, width 0.3s ease-in-out;
     height: 100%;
 }
@@ -353,6 +353,7 @@ a:hover {
         color: $lightColor;
     }
 }
+
 
 @media (prefers-color-scheme: light) {
 

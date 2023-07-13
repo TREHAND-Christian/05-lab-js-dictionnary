@@ -58,6 +58,7 @@ body {
   margin-top: 10px;
   display: flex;
   justify-content: center;
+  flex-wrap: nowrap;
 }
 
 #main {
@@ -70,17 +71,17 @@ body {
 }
 
 #myInput {
+  border-radius: 4px;
   width: 12.5rem;
-  height: 2.1875rem;
+  height: 35px;
   border: none;
-  border-radius: 0.3125rem;
   background-color: #ececec;
   padding-left: 0.625rem;
 }
 
 #btSubmit {
+  border-radius: 4px;
   background-color: #ececec;
-  border-radius: 0.3125rem;
   border: none;
   height: 36px;
   padding: 0 0.625rem 0 0.625rem;
@@ -88,18 +89,17 @@ body {
 
 #btSubmit:hover {
   background-color: rgba(255, 255, 255, 0.322);
-  border: 1px solid #b0b0b0;
+  border: 1px solid #377c2e;
 }
 
 .switch-toggle {
-  width: 18.75rem;
+  width: 300px;
   background: transparent;
   position: relative;
-  border-radius: 0.1875rem;
 }
 
 .switch-toggle.theme-switch {
-  width: 12.5rem;
+  width: 200px;
 }
 
 .switch-toggle input {
@@ -107,13 +107,14 @@ body {
 }
 
 .switch-toggle label {
+  height: 35px;
+  border-radius: 4px;
   float: left;
-  width: 33.33%;
+  width: 33.333%;
   line-height: 2.5rem;
   color: #000044;
   text-align: center;
   background: #ececec;
-  border-radius: 0.1875rem;
   cursor: pointer;
 }
 
@@ -123,31 +124,30 @@ body {
 }
 
 .btn-switch {
+  border-radius: 4px;
   display: block;
-  width: 33.33%;
-  height: 2.5rem;
+  width: 33.333%;
+  height: 35px;
   position: absolute;
   top: 0;
   left: 0;
   background: rgba(255, 255, 255, 0.322);
   color: #000044;
-  border-radius: 0.1875rem;
   transition: all 0.3s ease-in-out;
-  border: 1px solid #6f6d6d;
+  border: 1px solid #377c2e;
 }
 
 .theme-switch > .btn-switch {
   display: block;
-  width: 50%;
-  height: 2.5rem;
+  width: 49%;
+  height: 35px;
   position: absolute;
   top: 0;
   left: 0%;
   background: rgba(255, 255, 255, 0.322);
   color: #000044;
-  border-radius: 0.1875rem;
   transition: all 0.3s ease-in-out;
-  border: 1px solid #6f6d6d;
+  border: 1px solid #377c2e;
 }
 
 .switch-toggle.theme-switch label {
@@ -156,7 +156,6 @@ body {
   color: #000044;
   text-align: center;
   background: #ececec;
-  border-radius: 0.1875rem;
   cursor: pointer;
 }
 
@@ -188,7 +187,6 @@ body {
 }
 
 #audio {
-  margin-top: 25px;
   grid-area: 1/2;
 }
 
@@ -212,12 +210,12 @@ body {
 }
 
 .tab {
+  border-radius: 4px;
   color: #000044;
   text-transform: capitalize;
   display: inline-block;
   cursor: pointer;
   background-color: #ececec;
-  border-radius: 0.1875rem;
 }
 
 .tab.active {
@@ -226,7 +224,6 @@ body {
   top: 0;
   left: 1.5%;
   color: #000044;
-  border-radius: 0.1875rem;
 }
 
 .tab-light {
@@ -235,17 +232,16 @@ body {
   cursor: pointer;
   background-color: #ececec;
   color: #000044;
-  border-radius: 0.1875rem;
 }
 
 .tab-indicator {
+  border-radius: 4px;
   position: absolute;
   top: 0;
   left: 0;
   background-color: rgba(255, 255, 255, 0.322);
   color: #000044;
-  border-radius: 0.1875rem;
-  border: 1px solid;
+  border: 1px solid #377c2e;
   transition: left 0.3s ease-in-out, width 0.3s ease-in-out;
   height: 100%;
 }
