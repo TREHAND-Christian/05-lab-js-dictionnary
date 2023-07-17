@@ -20,14 +20,14 @@ function swapTheme() {
     if (isDark) {
         theme.style.background = coulTxt;
         theme.style.color = coulBg;
-        logo.src = "/src/img/logo-dark.png";
+        logoImg.src = "/src/img/logo-dark.png";
         for (let i = 0; i < lien.length; i++) {
             lien[i].classList.add('inverted');
           }
     } else {
         theme.style.background = coulTxt;
         theme.style.color = coulBg;
-        logo.src = "/src/img/logo.png";
+        logoImg.src = "/src/img/logo.png";
         for (let i = 0; i < lien.length; i++) {
             lien[i].classList.remove('inverted');
           }
