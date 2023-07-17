@@ -1,7 +1,7 @@
 // Variables
-$darkColor: #000044;
-$lightColor: #ddddFF;
-$buttonColor: #ececec;
+$darkColor: rgba(0,0,68,1.0);
+$lightColor: rgba(221,221,255,1.0);
+$buttonColor: rgba(236,236,236,1.0);
 $activeButtonColor: rgba(255, 255, 255, 0.322);
 $fontFamily: 'NTR',
 sans-serif;
@@ -10,7 +10,7 @@ $fontWeight: 400;
 $transition: background-color 1s,
 color 1s;
 $borderRadius: 4px;
-$border: 1px solid #377c2e;
+$border: 1px solid rgba(55,124,46,1.0);
 
 // Mixin pour media query
 @mixin respond($breakpoint) {
@@ -285,14 +285,17 @@ body {
     display: block;
 }
 
-a {
+.lien {
     color: blue;
 }
 
-a:hover {
+.lien:hover {
     color: rgb(43, 142, 56);
 }
 
+.inverted {
+    filter: invert(100%);
+}
 #erreur {
     height: 20px;
     text-align: center;

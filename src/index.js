@@ -1,13 +1,18 @@
 import './scss/style.scss';
 import getAPIResponse from './api-dico.js';
+
 const form = document.querySelector('form');
 const input = document.getElementById('myInput');
 const theme = document.querySelector('body');
 const logo = document.querySelector('#logo');
+const definition = document.getElementById('def');
+
+
 let isDark = false;
 
 // Fonction changement de thème
 function swapTheme() {
+    const lien = document.querySelectorAll('.lien');
     const element = document.body;
     const styles = getComputedStyle(element);
     const coulTxt = styles.color;
@@ -16,59 +21,70 @@ function swapTheme() {
         theme.style.background = coulTxt;
         theme.style.color = coulBg;
         logo.src = "/src/img/logo-dark.png";
+        for (let i = 0; i < lien.length; i++) {
+            lien[i].classList.add('inverted');
+          }
     } else {
         theme.style.background = coulTxt;
         theme.style.color = coulBg;
         logo.src = "/src/img/logo.png";
+        for (let i = 0; i < lien.length; i++) {
+            lien[i].classList.remove('inverted');
+          }
     }
 }
 
-// Evénement Submit
-form.addEventListener('submit', function (event) {
+// Événement Submit
+form.addEventListener('submit', (event) => {
     event.preventDefault();
     const word = input.value;
     getAPIResponse(word, 'en');
 });
 
-// Evénement changement de thème
-document.getElementById('lightTheme').addEventListener('click', function () {
+// Événement input focus
+input.addEventListener('focus', () => {
+    const erreur = document.querySelector("#erreur");
+    erreur.textContent = "";
+});
+
+// Événement changement de thème
+document.getElementById('lightTheme').addEventListener('click', () => {
     isDark = false;
     swapTheme();
 });
-document.getElementById('darkTheme').addEventListener('click', function () {
+
+document.getElementById('darkTheme').addEventListener('click', () => {
     isDark = true;
     swapTheme();
 });
 
-// Evénement Lien Synonymes / Antonymes
-document.addEventListener('click', function (event) {
-    if (event.target.tagName === 'A' && event.target.className === 'lien') {
+// Événement Lien Synonymes / Antonymes
+document.addEventListener('click', (event) => {
+    const {target} = event;
+    if (target.tagName === 'A' && target.className === 'lien') {
         event.preventDefault();
-        const content = event.target.textContent;
+        const content = target.textContent;
         getAPIResponse(content, 'en');
         input.value = content;
     }
 });
 
-
-let def = document.getElementById('def');
-// Evénement changement de police 
-document.querySelectorAll('.switch-toggle input[type="radio"]').forEach(input => {
-    input.addEventListener('change', function (e) {
+// Événement changement de police
+document.querySelectorAll('.switch-toggle input[type="radio"]').forEach((input) => {
+    input.addEventListener('change', (e) => {
         switch (e.target.id) {
             case 'sanssherif':
-                def.style.fontFamily = "sans-serif";
+                definition.style.fontFamily = 'sans-serif';
                 break;
             case 'sherif':
-                def.style.fontFamily = "serif";
+                definition.style.fontFamily = 'serif';
                 break;
-
             case 'monospace':
-                def.style.fontFamily = "monospace";
+                definition.style.fontFamily = 'monospace';
                 break;
         }
     });
 });
 
-// init "Word" par defaut
-getAPIResponse("word", 'en');
+// Initialisation du "mot" par défaut
+getAPIResponse('word', 'en');
