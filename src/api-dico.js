@@ -5,6 +5,7 @@ const API_VERSION = 'v2';
 const LANGUAGE = 'en';
 
 const constructAPI = (word, language = LANGUAGE, version = API_VERSION) => {
+    console.log(`https://api.dictionaryapi.dev/api/${version}/entries/${language}/${word}`);
     return `https://api.dictionaryapi.dev/api/${version}/entries/${language}/${word}`;
 }
 
@@ -156,12 +157,18 @@ function getAPI(word, language, version = 'v2') {
             const contentElement = document.getElementById('def');
             const synonymsElement = document.getElementById('synonyms');
             const antonymsElement = document.getElementById('antonyms');
+            const phoneticElement = document.getElementById('phonetic');
             // Mettre à jour les éléments
             wordElement.textContent = data[0].word;
+
+            // Afficher la phonétique
+
+            phoneticElement.innerHTML = `<span><p>Phonetic :</p><p> ${data[0].phonetic} </p><p id="playAudio"></p></span>`;
+
             // Chercher l'audio avec une URL
             const audioData = data[0].phonetics.find(item => item.audio !== '');
             if (audioData) {
-                audioElement.innerHTML = `<audio controls src="${audioData.audio}"></audio>`;
+                audioElement.innerHTML = `<audio id="playerAudio" controls src="${audioData.audio}"></audio>`;
             } else {
                 audioElement.innerHTML = "";
             }
@@ -172,11 +179,14 @@ function getAPI(word, language, version = 'v2') {
             //          CREATION ET GESTION DES SYNONYMES           
             processRelationWords(data, synonymsElement, 'synonyms');
             //          CREATION ET GESTION DES ANTONYMES           
-            processRelationWords(data, antonymsElement, 'antonyms');        })
+            processRelationWords(data, antonymsElement, 'antonyms');
+        })
 
-            .catch(e => {
+        .catch(e => {
             // Si une erreur se produit, affichez-la dans la console
             erreur.value = "There was a problem...."
             console.log('There was a problem with your fetch operation: ' + e.message);
         });
 }
+
+

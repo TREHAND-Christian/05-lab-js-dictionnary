@@ -87,5 +87,7 @@ document
         });
     });
 
+    
+
 // Initialisation du "mot" par défaut
 getAPIResponse("word", "en");
