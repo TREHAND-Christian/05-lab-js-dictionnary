@@ -67,7 +67,7 @@ body {
   grid-template-columns: 1fr 1fr 1fr 1fr;
   margin-left: auto;
   margin-right: auto;
-  width: 70%;
+  width: 80%;
   padding: 0.625rem;
 }
 
@@ -121,10 +121,6 @@ form {
   position: relative;
 }
 
-.switch-toggle.theme-switch {
-  width: 200px;
-}
-
 .switch-toggle input {
   display: none;
 }
@@ -176,26 +172,10 @@ form {
   grid-area: 1/4;
 }
 
-.theme-switch > .btn-switch {
-  display: block;
-  width: 49%;
-  height: 35px;
-  position: absolute;
-  top: 0;
-  left: 0%;
-  background: rgba(255, 255, 255, 0.322);
-  color: rgb(0, 0, 0);
-  transition: all 0.3s ease-in-out;
-  border: 1px solid #377c2e;
-}
-
-.switch-toggle.theme-switch label {
-  float: left;
-  width: 50%;
-  color: rgb(0, 0, 0);
-  text-align: center;
-  background: rgb(198, 214, 236);
-  cursor: pointer;
+#switch-theme {
+  height: 37px;
+  opacity: 1;
+  transition: opacity 3s ease-in-out;
 }
 
 #sherif:checked ~ .btn-switch {
@@ -208,14 +188,6 @@ form {
 
 #monospace:checked ~ .btn-switch {
   transform: translateX(12.5rem);
-}
-
-#lightTheme:checked ~ .btn-switch {
-  transform: translateX(0);
-}
-
-#darkTheme:checked ~ .btn-switch {
-  transform: translateX(100%);
 }
 
 #word {
