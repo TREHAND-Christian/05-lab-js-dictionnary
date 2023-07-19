@@ -6,6 +6,7 @@ const input = document.getElementById("myInput");
 const theme = document.querySelector("body");
 const definition = document.getElementById("def");
 
+
 let isDark = false;
 
 // Fonction changement de thème
@@ -21,17 +22,12 @@ function swapTheme() {
         theme.style.background = coulTxt;
         theme.style.color = coulBg;
         logoImg.src = "/src/img/logo-dark.png";
-        for (let i = 0; i < lien.length; i++) {
-            lien[i].classList.add("inverted");
-        }
         switchThemeImg.src = "/src/img/bt-light.png";
+
     } else {
         theme.style.background = coulTxt;
         theme.style.color = coulBg;
         logoImg.src = "/src/img/logo.png";
-        for (let i = 0; i < lien.length; i++) {
-            lien[i].classList.remove("inverted");
-        }
         switchThemeImg.src = "/src/img/bt-dark.png";
     }
 }
@@ -87,7 +83,6 @@ document
         });
     });
 
-    
 
 // Initialisation du "mot" par défaut
-getAPIResponse("word", "en");
+getAPIResponse("black", "en");

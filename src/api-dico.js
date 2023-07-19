@@ -108,11 +108,11 @@ function processRelationWords(data, element, relationType) {
         for (let meaning of wordDef.meanings) {
             let i = 0;
             if (meaning[relationType] && meaning[relationType].length > 0) {
-                html += `<li>`;
+                html += `<li class="liSynonym">`;
                 for (let word of meaning[relationType]) {
                     html += `<a href="" class="lien">${word}</a>`;
                     if (i < meaning[relationType].length - 1) {
-                        html += ", ";
+                        html += " ";
                     }
                     i++;
                 }
@@ -140,6 +140,50 @@ function processRelationWords(data, element, relationType) {
     });
 }
 
+// Sélectionner le conteneur dans lequel vous voulez ajouter les éléments
+const container = document.getElementById('response');
+
+// Créer les éléments et leur attribuer les identifiants souhaités
+const wordDiv = document.createElement('div');
+wordDiv.id = 'word';
+
+const vocalDiv = document.createElement('div');
+vocalDiv.id = 'vocal';
+
+const phoneticDiv = document.createElement('div');
+phoneticDiv.id = 'phonetic';
+
+const audioDiv = document.createElement('div');
+audioDiv.id = 'audio';
+
+const synonymsDiv = document.createElement('div');
+synonymsDiv.id = 'synonyms';
+
+const antonymsDiv = document.createElement('div');
+antonymsDiv.id = 'antonyms';
+
+const defsDiv = document.createElement('div');
+defsDiv.id = 'defs';
+
+const tabsDiv = document.createElement('div');
+tabsDiv.id = 'tabs';
+tabsDiv.style.zIndex = '10';
+
+const defDiv = document.createElement('div');
+defDiv.id = 'def';
+
+// Ajouter les éléments dans la structure HTML
+vocalDiv.appendChild(phoneticDiv);
+vocalDiv.appendChild(audioDiv);
+
+defsDiv.appendChild(tabsDiv);
+defsDiv.appendChild(defDiv);
+
+container.appendChild(wordDiv);
+container.appendChild(vocalDiv);
+container.appendChild(synonymsDiv);
+container.appendChild(antonymsDiv);
+container.appendChild(defsDiv);
 
 // FONCTION getAPI
 function getAPI(word, language, version = 'v2') {
@@ -158,17 +202,30 @@ function getAPI(word, language, version = 'v2') {
             const synonymsElement = document.getElementById('synonyms');
             const antonymsElement = document.getElementById('antonyms');
             const phoneticElement = document.getElementById('phonetic');
+            const playerAudio = document.getElementById("playerAudio");
+            console.log(playerAudio);
             // Mettre à jour les éléments
             wordElement.textContent = data[0].word;
 
             // Afficher la phonétique
 
             phoneticElement.innerHTML = `<span><p>Phonetic :</p><p> ${data[0].phonetic} </p><p id="playAudio"></p></span>`;
+            const btAudio = document.getElementById("playAudio");
+            console.log(btAudio);
+
+
 
             // Chercher l'audio avec une URL
             const audioData = data[0].phonetics.find(item => item.audio !== '');
             if (audioData) {
                 audioElement.innerHTML = `<audio id="playerAudio" controls src="${audioData.audio}"></audio>`;
+                const playerAudio = document.getElementById("playerAudio");
+                console.dir(playerAudio);
+                // Événement Play Audio
+                btAudio.addEventListener("click", () => {
+                    playerAudio.play();
+                });
+
             } else {
                 audioElement.innerHTML = "";
             }
@@ -188,5 +245,3 @@ function getAPI(word, language, version = 'v2') {
             console.log('There was a problem with your fetch operation: ' + e.message);
         });
 }
-
-

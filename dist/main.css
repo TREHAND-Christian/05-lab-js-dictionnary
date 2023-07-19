@@ -4,7 +4,16 @@
 @charset "UTF-8";
 li {
   margin-bottom: 15px;
-  margin-left: 10px;
+  margin-left: 0px;
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 20px; /* Vous pouvez ajuster cette valeur selon vos besoins */
+}
+
+li::before {
+  content: "•"; /* Caractère utilisé comme puce, vous pouvez le personnaliser si nécessaire */
+  margin-left: -15px;
+  margin-right: 10px; /* Marge entre la puce et le texte, vous pouvez ajuster cette valeur selon vos besoins */
 }
 
 audio::-webkit-media-controls-panel {
@@ -58,7 +67,7 @@ body {
   margin-top: 30px;
   font-size: 14px;
   display: grid;
-  grid-template-columns: 12.5% 25% 50% 12.5%;
+  grid-template-columns: 12.5% 25% 40% 10% 12.5%;
   grid-auto-rows: 70px 70px 70px 70px;
   width: 80%;
   padding: 0.625rem;
@@ -66,43 +75,56 @@ body {
 
 #logo {
   margin-bottom: 50px;
-  grid-row: 1;
+  margin-left: 50px;
+  grid-row: 1/span 2;
   grid-column: 2;
   display: flex;
-  text-align: center;
-  justify-content: center;
+  flex-direction: column;
 }
 
 #formulaire {
-  justify-content: center;
+  background-color: rgb(198, 214, 236);
+  width: max-content;
+  height: 40px;
+  z-index: 10;
+  justify-content: left;
   display: flex;
+  align-items: center;
   grid-row: 2;
   grid-column: 2;
+  margin-top: 22px;
+  margin-left: 0;
 }
 
 form {
-  height: 40px;
+  height: 35px;
 }
 
 #myInput {
-  border-radius: 4px;
+  margin-left: 5px;
+  padding-left: 10px;
   width: 12.5rem;
-  height: 35px;
+  height: 25px;
   border: none;
-  background-color: rgb(198, 214, 236);
+  background-color: rgba(255, 255, 255, 0.322);
+  vertical-align: middle;
 }
 
 #btSubmit {
-  border-radius: 4px;
   background-color: rgb(198, 214, 236);
+  background-image: url(src/img/loupe.png);
+  background-size: 25px 25px;
+  width: 30px;
+  height: 30px;
+  padding: 17px;
+  background-repeat: no-repeat;
+  background-position: center;
   border: none;
-  height: 36px;
-  padding: 0 0.625rem 0 0.625rem;
+  vertical-align: middle;
 }
 
 #btSubmit:hover {
   background-color: rgba(255, 255, 255, 0.322);
-  border: 1px solid #377c2e;
 }
 
 #styleBt {
@@ -123,7 +145,6 @@ form {
 
 .switch-toggle label {
   height: 35px;
-  border-radius: 4px;
   float: left;
   width: 100px;
   line-height: 2.5rem;
@@ -151,7 +172,6 @@ form {
 }
 
 .btn-switch {
-  border-radius: 4px;
   display: block;
   width: 100px;
   height: 35px;
@@ -161,13 +181,12 @@ form {
   background: rgba(255, 255, 255, 0.322);
   color: rgb(0, 0, 0);
   transition: all 0.3s ease-in-out;
-  border: 1px solid #377c2e;
 }
 
 #themeBt {
   margin-left: 50px;
   grid-row: 1;
-  grid-column: 3;
+  grid-column: 4;
 }
 
 #switch-theme {
@@ -188,10 +207,18 @@ form {
   transform: translateX(12.5rem);
 }
 
+#response {
+  grid-row: 2;
+  grid-column: 2/span 3;
+  display: grid;
+  grid-template-columns: 33% 66%;
+  grid-template-rows: 80px 80px 80px 150px 80px;
+}
+
 #word {
   margin-left: 50px;
-  grid-row: 3;
-  grid-column: 2;
+  grid-row: 2;
+  grid-column: 1;
   text-transform: capitalize;
   font-size: 52px;
 }
@@ -200,8 +227,8 @@ form {
   margin-left: 50px;
   display: flex;
   flex-direction: row;
-  grid-row: 4;
-  grid-column: 2;
+  grid-row: 3;
+  grid-column: 1;
 }
 
 #audio {
@@ -210,8 +237,8 @@ form {
 
 #playAudio {
   display: inline-block;
-  width: 50px;
-  height: 40px;
+  width: 60px;
+  height: 35px;
   background-color: rgb(198, 214, 236);
   color: #fff;
   border: none;
@@ -263,7 +290,7 @@ form {
 }
 
 #phonetic > span > p:nth-of-type(3) {
-  margin-left: 40px;
+  margin-left: 50px;
 }
 
 #synonyms,
@@ -275,18 +302,17 @@ form {
 }
 
 #synonyms {
-  grid-row: 5;
-  grid-column: 2;
+  grid-row: 4;
+  grid-column: 1;
 }
 
 #antonyms {
-  grid-row: 6;
-  grid-column: 2;
+  grid-row: 5;
+  grid-column: 1;
 }
 
 #defs {
-  grid-row: 2 span 6;
-  grid-column: 3;
+  grid-column: 2;
   display: flex;
   flex-direction: column;
 }
@@ -296,7 +322,6 @@ form {
 }
 
 .tab {
-  border-radius: 4px;
   color: rgb(0, 0, 0);
   text-transform: capitalize;
   display: inline-block;
@@ -321,37 +346,40 @@ form {
 }
 
 .tab-indicator {
-  border-radius: 4px;
   position: absolute;
   top: 0;
   left: 0;
   background-color: rgba(255, 255, 255, 0.322);
   color: rgb(0, 0, 0);
-  border: 1px solid #377c2e;
   transition: left 0.3s ease-in-out, width 0.3s ease-in-out;
   height: 100%;
 }
 
 .def {
+  margin-top: 20px;
   font-size: 16px;
   display: none;
   text-align: justify;
 }
 
 .def.active {
-  margin-top: 30px;
+  margin-left: -10px;
+  margin-top: 45px;
   font-size: 18px;
   padding-inline-start: 10px;
   display: block;
 }
 
 .lien {
-  font-size: 16px;
-  color: blue;
+  text-decoration: none;
+  border-radius: 3px;
+  padding: 5px;
+  font-size: 14px;
+  color: #2ca1bf;
 }
 
 .lien:hover {
-  color: rgb(43, 142, 56);
+  color: #3071a9;
 }
 
 .inverted {
@@ -362,7 +390,7 @@ form {
   height: 20px;
   text-align: center;
   width: 100%;
-  color: red;
+  color: #cf6679;
 }
 
 #themeBt > div > label:nth-child(2) {
@@ -422,9 +450,11 @@ form {
     grid-row: 4;
   }
   #synonyms {
+    z-index: 5;
     grid-row: 5;
   }
   #antonyms {
+    z-index: 2;
     grid-column: 1;
     grid-row: 6;
   }
