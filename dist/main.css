@@ -3,17 +3,17 @@
   \**************************************************************************************************************/
 @charset "UTF-8";
 li {
-  margin-bottom: 15px;
+  margin-bottom: 0.9375rem;
   margin-left: 0px;
   display: inline-block;
   vertical-align: top;
-  margin-left: 20px;
+  margin-left: 1.25rem;
 }
 
 li::before {
   content: "•";
-  margin-left: -15px;
-  margin-right: 10px;
+  margin-left: -0.9375rem;
+  margin-right: 0.625rem;
 }
 
 audio::-webkit-media-controls-panel {
@@ -21,7 +21,7 @@ audio::-webkit-media-controls-panel {
 }
 
 audio {
-  height: 40px;
+  height: 2.5rem;
 }
 
 img {
@@ -65,58 +65,67 @@ body {
 
 #main {
   width: 100%;
-  margin-top: 30px;
-  font-size: 14px;
+  margin-top: 1.875rem;
+  font-size: 0.875rem;
   display: grid;
-  grid-template-columns: auto 20% 30% 10% auto;
-  grid-template-rows: 80px auto;
+  grid-template-columns: auto 385px 700px 84px auto;
+  grid-template-rows: 5rem auto;
   padding: 0.625rem;
 }
 
 #logo {
-  margin-bottom: 50px;
-  margin-left: 50px;
+  margin-bottom: 3.125rem;
+  margin-left: 3.125rem;
   grid-row: 1/span 2;
   grid-column: 2;
   display: flex;
   flex-direction: column;
 }
 
+#btMenu {
+  display: none;
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+}
+
 #formulaire {
+  z-index: 9;
   background-color: rgb(198, 214, 236);
   width: max-content;
-  height: 40px;
-  z-index: 10;
+  height: 2.5rem;
   justify-content: left;
   display: flex;
   align-items: center;
   grid-row: 2;
   grid-column: 2;
-  margin-top: 22px;
+  margin-top: 1.375rem;
   margin-left: 0;
 }
 
 form {
-  height: 35px;
+  height: 2.1875rem;
 }
 
 #myInput {
-  margin-left: 5px;
-  padding-left: 10px;
+  margin-left: 0.3125rem;
+  padding-left: 0.625rem;
   width: 12.5rem;
-  height: 25px;
+  height: 1.5625rem;
   border: none;
-  background-color: rgba(255, 255, 255, 0.322);
+  background-color: white;
   vertical-align: middle;
 }
 
 #btSubmit {
   background-color: rgb(198, 214, 236);
   background-image: url(src/img/loupe.png);
-  background-size: 25px 25px;
-  width: 30px;
-  height: 30px;
-  padding: 17px;
+  background-size: 1.5625rem 1.5625rem;
+  width: 1.875rem;
+  height: 1.875rem;
+  padding: 1.0625rem;
   background-repeat: no-repeat;
   background-position: center;
   border: none;
@@ -128,10 +137,13 @@ form {
 }
 
 #styleBt {
+  width: 100%;
+  background-color: rgb(255, 255, 255);
   display: flex;
   grid-row: 1;
   grid-column: 3/span 2;
   justify-content: space-between;
+  transition: background-color 1s, color 1s;
 }
 
 .switch-toggle {
@@ -146,9 +158,9 @@ form {
 }
 
 .switch-toggle label {
-  height: 35px;
+  height: 2.1875rem;
   float: left;
-  width: 100px;
+  width: 6.25rem;
   line-height: 2.5rem;
   color: rgb(0, 0, 0);
   text-align: center;
@@ -157,7 +169,7 @@ form {
 }
 
 .switch-toggle label:nth-of-type(1) {
-  font-family: sherif;
+  font-family: serif;
 }
 
 .switch-toggle label:nth-of-type(2) {
@@ -175,8 +187,8 @@ form {
 
 .btn-switch {
   display: block;
-  width: 100px;
-  height: 35px;
+  width: 6.25rem;
+  height: 2.1875rem;
   position: absolute;
   top: 0;
   left: 0;
@@ -186,22 +198,22 @@ form {
 }
 
 #themeBt {
-  margin-left: 50px;
+  margin-left: 3.125rem;
   grid-row: 1;
   grid-column: 4;
 }
 
 #switch-theme {
-  height: 37px;
+  height: 2.3125rem;
   opacity: 1;
   transition: opacity 3s ease-in-out;
 }
 
-#sherif:checked ~ .btn-switch {
+#serif:checked ~ .btn-switch {
   transform: translateX(0);
 }
 
-#sanssherif:checked ~ .btn-switch {
+#sansserif:checked ~ .btn-switch {
   transform: translateX(6.25rem);
 }
 
@@ -214,19 +226,19 @@ form {
   grid-column: 2/span 3;
   display: grid;
   grid-template-columns: 33% 66%;
-  grid-template-rows: 80px 80px 80px 150px 80px;
+  grid-template-rows: 5rem 5rem 5rem 9.375rem 5rem;
 }
 
 #word {
-  margin-left: 50px;
+  margin-left: 3.125rem;
   grid-row: 2;
   grid-column: 1;
   text-transform: capitalize;
-  font-size: 52px;
+  font-size: 3.25rem;
 }
 
 #vocal {
-  margin-left: 50px;
+  margin-left: 3.125rem;
   display: flex;
   flex-direction: row;
   grid-row: 3;
@@ -238,35 +250,17 @@ form {
 }
 
 #playAudio {
-  display: inline-block;
-  width: 60px;
-  height: 35px;
-  background-color: rgb(198, 214, 236);
-  color: #fff;
-  border: none;
-  border-radius: 5px;
+  background-image: url(src/img/audio.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 2.5rem;
+  height: 2.5rem;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  position: relative;
-  overflow: hidden;
-  padding: 0;
-}
-
-#playAudio::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 0;
-  height: 0;
-  border-top: 10px solid transparent;
-  border-bottom: 10px solid transparent;
-  border-left: 15px solid #000;
 }
 
 #playAudio:hover {
-  background-color: #3071a9;
+  background-color: #d8e3f2;
+  border-radius: 1.5625rem;
 }
 
 #playAudio:hover::before {
@@ -282,22 +276,22 @@ form {
 }
 
 #phonetic > span > p:nth-of-type(1) {
-  font-size: 22px;
+  font-size: 1.375rem;
   font-weight: 700;
 }
 
 #phonetic > span > p:nth-of-type(2) {
-  font-size: 18px;
-  margin-left: 10px;
+  font-size: 1.125rem;
+  margin-left: 0.625rem;
 }
 
 #phonetic > span > p:nth-of-type(3) {
-  margin-left: 20px;
+  margin-left: 1.25rem;
 }
 
 #synonyms,
 #antonyms {
-  margin-left: 50px;
+  margin-left: 3.125rem;
   width: 70%;
   text-transform: capitalize;
   padding-left: 0;
@@ -341,7 +335,7 @@ form {
 
 .tab-light {
   color: rgb(0, 0, 0);
-  padding: 10px 10px 10px 10px;
+  padding: 0.625rem 0.625rem 0.625rem 0.625rem;
   cursor: pointer;
   background-color: rgb(198, 214, 236);
   color: rgb(0, 0, 0);
@@ -358,27 +352,28 @@ form {
 }
 
 .def {
-  margin-top: 20px;
-  font-size: 16px;
+  margin-top: 1.25rem;
+  font-size: 1rem;
   display: none;
   text-align: justify;
 }
 
 .def.active {
   box-sizing: border-box;
-  margin-left: -10px;
-  margin-top: 45px;
-  font-size: 18px;
-  padding-inline-start: 10px;
+  margin-left: -0.625rem;
+  margin-right: 0.625rem;
+  margin-top: 2.8125rem;
+  font-size: 1.125rem;
+  padding-inline-start: 0.625rem;
   display: flex;
   flex-direction: column;
 }
 
 .lien {
   text-decoration: none;
-  border-radius: 3px;
-  padding: 5px;
-  font-size: 14px;
+  border-radius: 0.1875rem;
+  padding: 0.3125rem;
+  font-size: 0.875rem;
   color: #2ca1bf;
 }
 
@@ -391,16 +386,17 @@ form {
 }
 
 #erreur {
-  height: 20px;
+  margin-top: 0.3125rem;
+  height: 1.25rem;
   text-align: center;
   width: 100%;
   color: #cf6679;
+  font-weight: 700;
 }
 
 #themeBt > div > label:nth-child(2) {
   position: relative;
-  z-index: 0;
-  left: 100px;
+  left: 6.25rem;
   background-color: transparent;
   background-size: contain;
   background-repeat: no-repeat;
@@ -409,7 +405,6 @@ form {
 
 #themeBt > div > label:nth-child(4) {
   position: relative;
-  z-index: 10;
   background-size: contain;
   background-repeat: no-repeat;
   background-color: transparent;
@@ -418,7 +413,7 @@ form {
 
 @media (max-width: 1280px) {
   #main {
-    grid-template-columns: 5% 27% 53% 10% 5%;
+    grid-template-columns: auto 250px 500px 84px auto;
   }
   #word {
     margin-left: 0;
@@ -436,12 +431,12 @@ form {
     margin-left: 0;
   }
   #styleBt {
-    margin-left: 30px;
+    margin-left: 1.875rem;
   }
 }
 @media (max-width: 884px) {
   #main {
-    grid-template-columns: 0% 30% 60% 10% 0%;
+    grid-template-columns: auto 250px 500px 84px auto;
   }
   #word {
     margin-left: 0;
@@ -453,26 +448,30 @@ form {
     margin-left: 0;
   }
   #antonyms {
+    margin-top: 20px;
     margin-left: 0;
+  }
+  .lien {
+    font-size: 16px;
   }
   #logo {
     margin-left: 0;
   }
   #styleBt {
-    margin-left: 30px;
+    margin-left: 1.875rem;
   }
 }
 /* Media Queries */
 @media (max-width: 834px) {
-  #container {
-    margin: 0;
-  }
   #main {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0px;
+    margin: 3%;
+    padding: 0;
     grid-template-columns: 100%;
-    grid-template-rows: 80px;
+    grid-template-rows: 5rem;
+  }
+  #btMenu {
+    display: flex;
   }
   #logo {
     grid-column: 1;
@@ -481,10 +480,13 @@ form {
     height: 2.8125rem;
     margin: 0;
   }
+  #logoImg {
+    margin-left: -60px;
+  }
   #response {
     margin: 0;
     grid-template-columns: 1fr;
-    grid-template-rows: 80px 80px 80px;
+    grid-template-rows: 5rem 5rem 5rem;
     grid-column: 1;
     grid-row: 2;
   }
@@ -494,39 +496,56 @@ form {
     grid-row: 2;
     grid-column: 1;
     text-transform: capitalize;
-    font-size: 3rem;
+    font-size: 56px;
   }
   #vocal {
-    margin-left: 10px;
+    font-size: 32px;
+    margin-left: 1rem;
   }
   #audio {
     grid-column: 1;
     grid-row: 3;
   }
+  .lien {
+    font-size: 20px;
+  }
   #synonyms {
-    margin-left: 10px;
+    font-size: 20px;
+    margin-left: 1rem;
     grid-row: 4;
   }
   #antonyms {
-    margin-left: 10px;
+    font-size: 20px;
+    margin-left: 1rem;
     grid-column: 1;
     grid-row: 5;
   }
   #defs {
-    padding: 10px;
+    font-size: 16px;
+    padding: 1rem;
     margin: 0;
     grid-column: 1;
     grid-row: 6;
   }
+  .def.def.active {
+    font-size: 22px;
+  }
   #styleBt {
-    margin: 0;
+    display: none;
+    z-index: 10;
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+    position: fixed;
+    top: 0;
+    margin: auto;
+    transition: background-color 1s, color 1s;
     flex-direction: column;
     align-items: center;
     grid-column: 1;
     grid-row: 7;
   }
   #themeBt {
-    margin: 20px 0px 20px 0px;
+    margin: 1.25rem 0px 1.25rem 0px;
   }
 }
 @media (prefers-color-scheme: dark) {

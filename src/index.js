@@ -11,7 +11,7 @@ let isDark = false;
 
 // Fonction changement de thème
 function swapTheme() {
-    const lien = document.querySelectorAll(".lien");
+    const menu = document.getElementById("styleBt");
     const element = document.body;
     const styles = getComputedStyle(element);
     const coulTxt = styles.color;
@@ -23,12 +23,14 @@ function swapTheme() {
         theme.style.color = coulBg;
         logoImg.src = "/src/img/logo-dark.png";
         switchThemeImg.src = "/src/img/bt-light.png";
+        menu.style.backgroundColor = coulTxt;
 
     } else {
         theme.style.background = coulTxt;
         theme.style.color = coulBg;
         logoImg.src = "/src/img/logo.png";
         switchThemeImg.src = "/src/img/bt-dark.png";
+        menu.style.backgroundColor = coulTxt;
     }
 }
 
@@ -38,6 +40,24 @@ document.getElementById("switch-theme").addEventListener("click", () => {
     swapTheme();
 });
 
+// Événement menu mobile
+document.getElementById("btMenu").addEventListener("mouseenter", () => {
+    document.getElementById("styleBt").style.display = "flex";
+});
+
+document.getElementById("btMenu").addEventListener("mouseleave", () => {
+    document.getElementById("styleBt").style.display = "none";
+});
+// Événement menu mobile
+if (window.innerWidth < 840) {
+    document.getElementById("styleBt").addEventListener("mouseenter", () => {
+        document.getElementById("styleBt").style.display = "flex";
+    });
+
+    document.getElementById("styleBt").addEventListener("mouseleave", () => {
+        document.getElementById("styleBt").style.display = "none";
+    });
+}
 // Événement Submit
 form.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -70,10 +90,10 @@ document
     .forEach((input) => {
         input.addEventListener("change", (e) => {
             switch (e.target.id) {
-                case "sanssherif":
+                case "sansserif":
                     definition.style.fontFamily = "sans-serif";
                     break;
-                case "sherif":
+                case "serif":
                     definition.style.fontFamily = "serif";
                     break;
                 case "monospace":
