@@ -140,10 +140,9 @@ function processRelationWords(data, element, relationType) {
     });
 }
 
-// Sélectionner le conteneur dans lequel vous voulez ajouter les éléments
+
 const container = document.getElementById('response');
 
-// Créer les éléments et leur attribuer les identifiants souhaités
 const wordDiv = document.createElement('div');
 wordDiv.id = 'word';
 
@@ -209,11 +208,8 @@ function getAPI(word, language, version = 'v2') {
 
             // Afficher la phonétique
 
-            phoneticElement.innerHTML = `<span><p>Phonetic :</p><p> ${data[0].phonetic} </p><p id="playAudio"></p></span>`;
+            phoneticElement.innerHTML = `<span><p>Phonetic </p><p> ${data[0].phonetic} </p><p id="playAudio"></p></span>`;
             const btAudio = document.getElementById("playAudio");
-            console.log(btAudio);
-
-
 
             // Chercher l'audio avec une URL
             const audioData = data[0].phonetics.find(item => item.audio !== '');

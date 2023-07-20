@@ -7,13 +7,13 @@ li {
   margin-left: 0px;
   display: inline-block;
   vertical-align: top;
-  margin-left: 20px; /* Vous pouvez ajuster cette valeur selon vos besoins */
+  margin-left: 20px;
 }
 
 li::before {
-  content: "•"; /* Caractère utilisé comme puce, vous pouvez le personnaliser si nécessaire */
+  content: "•";
   margin-left: -15px;
-  margin-right: 10px; /* Marge entre la puce et le texte, vous pouvez ajuster cette valeur selon vos besoins */
+  margin-right: 10px;
 }
 
 audio::-webkit-media-controls-panel {
@@ -64,12 +64,12 @@ body {
 }
 
 #main {
+  width: 100%;
   margin-top: 30px;
   font-size: 14px;
   display: grid;
-  grid-template-columns: 12.5% 25% 40% 10% 12.5%;
-  grid-auto-rows: 70px 70px 70px 70px;
-  width: 80%;
+  grid-template-columns: auto 20% 30% 10% auto;
+  grid-template-rows: 80px auto;
   padding: 0.625rem;
 }
 
@@ -128,8 +128,10 @@ form {
 }
 
 #styleBt {
+  display: flex;
   grid-row: 1;
-  grid-column: 3;
+  grid-column: 3/span 2;
+  justify-content: space-between;
 }
 
 .switch-toggle {
@@ -290,7 +292,7 @@ form {
 }
 
 #phonetic > span > p:nth-of-type(3) {
-  margin-left: 50px;
+  margin-left: 20px;
 }
 
 #synonyms,
@@ -363,11 +365,13 @@ form {
 }
 
 .def.active {
+  box-sizing: border-box;
   margin-left: -10px;
   margin-top: 45px;
   font-size: 18px;
   padding-inline-start: 10px;
-  display: block;
+  display: flex;
+  flex-direction: column;
 }
 
 .lien {
@@ -412,63 +416,117 @@ form {
   background-image: url(src/img/bt-dark.png);
 }
 
+@media (max-width: 1280px) {
+  #main {
+    grid-template-columns: 5% 27% 53% 10% 5%;
+  }
+  #word {
+    margin-left: 0;
+  }
+  #vocal {
+    margin-left: 0;
+  }
+  #synonyms {
+    margin-left: 0;
+  }
+  #antonyms {
+    margin-left: 0;
+  }
+  #logo {
+    margin-left: 0;
+  }
+  #styleBt {
+    margin-left: 30px;
+  }
+}
+@media (max-width: 884px) {
+  #main {
+    grid-template-columns: 0% 30% 60% 10% 0%;
+  }
+  #word {
+    margin-left: 0;
+  }
+  #vocal {
+    margin-left: 0;
+  }
+  #synonyms {
+    margin-left: 0;
+  }
+  #antonyms {
+    margin-left: 0;
+  }
+  #logo {
+    margin-left: 0;
+  }
+  #styleBt {
+    margin-left: 30px;
+  }
+}
 /* Media Queries */
-@media (max-width: 413px) {
+@media (max-width: 834px) {
   #container {
-    box-sizing: border-box;
     margin: 0;
-    width: 350px;
   }
   #main {
     box-sizing: border-box;
-    margin: 0px;
-    padding: 10px;
-    grid-template-columns: 1fr;
-    width: 350px;
+    margin: 0;
+    padding: 0px;
+    grid-template-columns: 100%;
+    grid-template-rows: 80px;
   }
   #logo {
+    grid-column: 1;
     grid-row: 1;
-    justify-content: center;
+    align-items: center;
     height: 2.8125rem;
     margin: 0;
   }
-  #formulaire {
+  #response {
+    margin: 0;
+    grid-template-columns: 1fr;
+    grid-template-rows: 80px 80px 80px;
     grid-column: 1;
     grid-row: 2;
   }
   #word {
     margin: 0;
     text-align: center;
-    grid-row: 3;
+    grid-row: 2;
+    grid-column: 1;
     text-transform: capitalize;
     font-size: 3rem;
   }
+  #vocal {
+    margin-left: 10px;
+  }
   #audio {
-    justify-content: center;
-    text-align: center;
     grid-column: 1;
-    grid-row: 4;
+    grid-row: 3;
   }
   #synonyms {
-    z-index: 5;
-    grid-row: 5;
+    margin-left: 10px;
+    grid-row: 4;
   }
   #antonyms {
-    z-index: 2;
+    margin-left: 10px;
+    grid-column: 1;
+    grid-row: 5;
+  }
+  #defs {
+    padding: 10px;
+    margin: 0;
     grid-column: 1;
     grid-row: 6;
   }
-  #defs {
-    width: 350px;
+  #styleBt {
+    margin: 0;
+    flex-direction: column;
+    align-items: center;
+    grid-column: 1;
     grid-row: 7;
   }
-  #styleBt {
-    grid-column: 1;
-    grid-row: 8;
-  }
   #themeBt {
-    grid-column: 1;
-    grid-row: 9;
+    margin: 20px 0px 20px 0px;
   }
 }
 @media (prefers-color-scheme: dark) {
