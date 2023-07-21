@@ -40,22 +40,27 @@ document.getElementById("switch-theme").addEventListener("click", () => {
     swapTheme();
 });
 
+
 // Événement menu mobile
+const styleBt = document.getElementById("styleBt");
 document.getElementById("btMenu").addEventListener("mouseenter", () => {
-    document.getElementById("styleBt").style.display = "flex";
+    styleBt.style.opacity = 1;
+
 });
 
 document.getElementById("btMenu").addEventListener("mouseleave", () => {
-    document.getElementById("styleBt").style.display = "none";
+    styleBt.style.opacity = 0;
+
 });
-// Événement menu mobile
 if (window.innerWidth < 840) {
     document.getElementById("styleBt").addEventListener("mouseenter", () => {
-        document.getElementById("styleBt").style.display = "flex";
+        styleBt.style.opacity = 1;
+
     });
 
     document.getElementById("styleBt").addEventListener("mouseleave", () => {
-        document.getElementById("styleBt").style.display = "none";
+        styleBt.style.opacity = 0;
+
     });
 }
 // Événement Submit
