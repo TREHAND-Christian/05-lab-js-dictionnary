@@ -24,11 +24,6 @@ audio {
   height: 2.5rem;
 }
 
-img {
-  background-image: url(src/img/logo-dark.png);
-  transition: opacity 3s ease-in-out;
-}
-
 body {
   font-family: "NTR", sans-serif;
   font-size: 14px;
@@ -57,15 +52,8 @@ body {
   justify-content: center;
 }
 
-.btCenter {
-  display: flex;
-  justify-content: left;
-  flex-wrap: nowrap;
-}
-
 #main {
   width: 100%;
-  margin-top: 1.875rem;
   font-size: 0.875rem;
   display: grid;
   grid-template-columns: auto 385px 700px 84px auto;
@@ -74,35 +62,28 @@ body {
 }
 
 #logo {
-  margin-bottom: 3.125rem;
-  margin-left: 3.125rem;
-  grid-row: 1/span 2;
-  grid-column: 2;
-  display: flex;
-  flex-direction: column;
-}
-
-#btMenu {
-  display: none;
-  position: fixed;
-  top: 10px;
-  right: 10px;
-  width: 40px;
-  height: 40px;
+  background-image: url(src/img/logo.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  grid-row: 1;
+  grid-column: 2/3 span;
 }
 
 #formulaire {
-  z-index: 9;
+  z-index: 1000;
+  margin-left: 40px;
+  margin-right: 40px;
   background-color: rgb(198, 214, 236);
-  width: max-content;
+  width: 260Px;
   height: 2.5rem;
-  justify-content: left;
   display: flex;
   align-items: center;
   grid-row: 2;
   grid-column: 2;
-  margin-top: 1.375rem;
-  margin-left: 0;
 }
 
 form {
@@ -136,14 +117,28 @@ form {
   background-color: rgba(255, 255, 255, 0.322);
 }
 
+#btMenu {
+  position: absolute;
+  z-index: 1000;
+  background-image: url(src/img/menu.png);
+  background-size: cover;
+  grid-row: 2;
+  grid-column: 4/2 span;
+  position: relative;
+  width: 35px;
+  height: 35px;
+}
+
 #styleBt {
-  opacity: 1;
-  height: 140px;
+  z-index: 2000;
+  position: absolute;
+  padding-right: 20px;
+  right: 35px;
+  width: 400px;
+  opacity: 0;
   background-color: rgb(255, 255, 255);
   display: flex;
-  grid-row: 1;
-  grid-column: 3/span 2;
-  justify-content: space-between;
+  justify-content: left;
   transition: background-color 1s, color 1s;
 }
 
@@ -199,9 +194,7 @@ form {
 }
 
 #themeBt {
-  margin-left: 3.125rem;
-  grid-row: 1;
-  grid-column: 4;
+  margin-left: 20px;
 }
 
 #switch-theme {
@@ -395,23 +388,6 @@ form {
   font-weight: 700;
 }
 
-#themeBt > div > label:nth-child(2) {
-  position: relative;
-  left: 6.25rem;
-  background-color: transparent;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-image: url(src/img/bt-light.png);
-}
-
-#themeBt > div > label:nth-child(4) {
-  position: relative;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-color: transparent;
-  background-image: url(src/img/bt-dark.png);
-}
-
 @media (max-width: 1280px) {
   #main {
     grid-template-columns: auto 250px 500px 84px auto;
@@ -471,7 +447,14 @@ form {
     grid-template-columns: 100%;
     grid-template-rows: 5rem;
   }
+  #formulaire {
+    grid-column: 1;
+  }
   #btMenu {
+    position: absolute;
+    right: 10px;
+    grid-column: 1;
+    grid-row: 1;
     display: flex;
   }
   #logo {
@@ -480,9 +463,6 @@ form {
     align-items: center;
     height: 2.8125rem;
     margin: 0;
-  }
-  #logoImg {
-    margin-left: -60px;
   }
   #response {
     margin: 0;
@@ -548,7 +528,7 @@ form {
     grid-row: 7;
   }
   #themeBt {
-    margin: 1.25rem 0px 1.25rem 0px;
+    margin: 10px 0px 0rem 0px;
   }
 }
 @media (prefers-color-scheme: dark) {

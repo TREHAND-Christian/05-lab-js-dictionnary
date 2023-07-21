@@ -21,14 +21,14 @@ function swapTheme() {
     if (isDark) {
         theme.style.background = coulTxt;
         theme.style.color = coulBg;
-        logoImg.src = "/src/img/logo-dark.png";
+        logo.style.background = "src/img/logo-dark.png";
         switchThemeImg.src = "/src/img/bt-light.png";
         menu.style.backgroundColor = coulTxt;
 
     } else {
         theme.style.background = coulTxt;
         theme.style.color = coulBg;
-        logoImg.src = "/src/img/logo.png";
+        logo.style.background = "src/img/logo.png";
         switchThemeImg.src = "/src/img/bt-dark.png";
         menu.style.backgroundColor = coulTxt;
     }
@@ -52,7 +52,6 @@ document.getElementById("btMenu").addEventListener("mouseleave", () => {
     styleBt.style.opacity = 0;
 
 });
-if (window.innerWidth < 840) {
     document.getElementById("styleBt").addEventListener("mouseenter", () => {
         styleBt.style.opacity = 1;
 
@@ -62,8 +61,8 @@ if (window.innerWidth < 840) {
         styleBt.style.opacity = 0;
 
     });
-}
-// Événement Submit
+
+    // Événement Submit
 form.addEventListener("submit", (event) => {
     event.preventDefault();
     const word = input.value;
@@ -110,4 +109,4 @@ document
 
 
 // Initialisation du "mot" par défaut
-getAPIResponse("black", "en");
+getAPIResponse("welcome", "en");

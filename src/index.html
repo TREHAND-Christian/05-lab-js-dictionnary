@@ -5,23 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dictionary</title>
+    <link rel="preload" as="image" href="src/img/bt-light.png">
+    <link rel="preload" as="image" href="src/img/bt-dark.png">
+    <link rel="preload" as="image" href="src/img/logo.png">
+    <link rel="preload" as="image" href="src/img/logo-dark.png">
+
 </head>
 
 <body>
     </div>
     <div id="container">
         <div id="main">
-            <div id="logo"><img id="logoImg" src="/src/img/logo.png" height="60" width="280" alt="logo">
-                <div id="btMenu"><img src="/src/img/menu.png"></div>
-                <div id="formulaire" class="btCenter">
-                    <form id="myForm">
-                        <input type="text" id="myInput" placeholder="Enter any word">
-                        <input id="btSubmit" type="submit" value="">
-                        <div id="erreur"></div>
-                    </form>
-                </div>
-            </div>
-            <div id="styleBt" class="btCenter">
+            <div id="btMenu"><div id="styleBt">
+                
                 <div class="switch-toggle">
                     <input id="serif" name="style" type="radio">
                     <label for="serif" onclick="">Serif</label>
@@ -36,8 +32,21 @@
                     <img id="switch-theme" src="/src/img/bt-dark.png" alt="Switch Theme">
                 </div>
             </div>
+</div>
+            <div id="logo"></div>
+                <div id="formulaire">
+                    <form id="myForm">
+                        <input type="text" id="myInput" placeholder="Enter any word">
+                        <input id="btSubmit" type="submit" value="">
+                        <div id="erreur"></div>
+                    </form>
+                </div>
+            
+            
 
-            <div id="response"></div>
+            <div id="response">
+                
+            </div>
 
         </div>
 </body>
