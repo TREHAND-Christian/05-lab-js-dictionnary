@@ -26,7 +26,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _scss_style_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./scss/style.scss */ \"./src/scss/style.scss\");\n/* harmony import */ var _api_dico_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./api-dico.js */ \"./src/api-dico.js\");\n\n\nconst form = document.querySelector(\"form\");\nconst input = document.getElementById(\"myInput\");\nconst theme = document.querySelector(\"body\");\nconst definition = document.getElementById(\"def\");\nlet isDark = false;\n\n// Fonction changement de thème\nfunction swapTheme() {\n  const menu = document.getElementById(\"styleBt\");\n  const element = document.body;\n  const styles = getComputedStyle(element);\n  const coulTxt = styles.color;\n  const coulBg = styles.backgroundColor;\n  const switchThemeImg = document.getElementById(\"switch-theme\");\n  if (isDark) {\n    theme.style.background = coulTxt;\n    theme.style.color = coulBg;\n    logo.style.background = \"src/img/logo-dark.png\";\n    switchThemeImg.src = \"/src/img/bt-light.png\";\n    menu.style.backgroundColor = coulTxt;\n  } else {\n    theme.style.background = coulTxt;\n    theme.style.color = coulBg;\n    logo.style.background = \"src/img/logo.png\";\n    switchThemeImg.src = \"/src/img/bt-dark.png\";\n    menu.style.backgroundColor = coulTxt;\n  }\n}\n\n// Événement changement de thème\ndocument.getElementById(\"switch-theme\").addEventListener(\"click\", () => {\n  isDark = !isDark; // Inverse la valeur de isDark\n  swapTheme();\n});\n\n// Événement menu mobile\nconst styleBt = document.getElementById(\"styleBt\");\ndocument.getElementById(\"btMenu\").addEventListener(\"mouseenter\", () => {\n  styleBt.style.opacity = 1;\n});\ndocument.getElementById(\"btMenu\").addEventListener(\"mouseleave\", () => {\n  styleBt.style.opacity = 0;\n});\ndocument.getElementById(\"styleBt\").addEventListener(\"mouseenter\", () => {\n  styleBt.style.opacity = 1;\n});\ndocument.getElementById(\"styleBt\").addEventListener(\"mouseleave\", () => {\n  styleBt.style.opacity = 0;\n});\n\n// Événement Submit\nform.addEventListener(\"submit\", event => {\n  event.preventDefault();\n  const word = input.value;\n  (0,_api_dico_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(word, \"en\");\n});\n\n// Événement input focus\ninput.addEventListener(\"focus\", () => {\n  const erreur = document.querySelector(\"#erreur\");\n  erreur.textContent = \"\";\n});\n\n// Événement Lien Synonymes / Antonymes\ndocument.addEventListener(\"click\", event => {\n  const {\n    target\n  } = event;\n  if (target.tagName === \"A\" && target.className === \"lien\") {\n    event.preventDefault();\n    const content = target.textContent;\n    (0,_api_dico_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(content, \"en\");\n    input.value = content;\n  }\n});\n\n// Événement changement de police\ndocument.querySelectorAll('.switch-toggle input[type=\"radio\"]').forEach(input => {\n  input.addEventListener(\"change\", e => {\n    switch (e.target.id) {\n      case \"sansserif\":\n        definition.style.fontFamily = \"sans-serif\";\n        break;\n      case \"serif\":\n        definition.style.fontFamily = \"serif\";\n        break;\n      case \"monospace\":\n        definition.style.fontFamily = \"monospace\";\n        break;\n    }\n  });\n});\n\n// Initialisation du \"mot\" par défaut\n(0,_api_dico_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(\"welcome\", \"en\");\n\n//# sourceURL=webpack://my-webpack-project/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _scss_style_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./scss/style.scss */ \"./src/scss/style.scss\");\n/* harmony import */ var _api_dico_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./api-dico.js */ \"./src/api-dico.js\");\n\n\nvar url = __webpack_require__(/*! ../../../../../src/img/bt-light.webp */ \"./src/img/bt-light.webp\");\nvar url = __webpack_require__(/*! ../../../../../src/img/bt-dark.webp */ \"./src/img/bt-dark.webp\");\nvar url = __webpack_require__(/*! ../../../../../src/img/logo.webp */ \"./src/img/logo.webp\");\nvar url = __webpack_require__(/*! ../../../../../src/img/logo-dark.webp */ \"./src/img/logo-dark.webp\");\nvar url = __webpack_require__(/*! ../../../../../src/img/audio.webp */ \"./src/img/audio.webp\");\nvar url = __webpack_require__(/*! ../../../../../src/img/loupe.webp */ \"./src/img/loupe.webp\");\nvar url = __webpack_require__(/*! ../../../../../src/img/menu.webp */ \"./src/img/menu.webp\");\nlet menuOpen = false;\nconst form = document.querySelector(\"form\");\nconst input = document.getElementById(\"myInput\");\nconst theme = document.querySelector(\"body\");\nconst definition = document.getElementById(\"def\");\nlet isDark = false;\n\n// Fonction changement de thème\nfunction swapTheme() {\n  const menu = document.getElementById(\"styleBt\");\n  const logo = document.getElementById(\"logo\");\n  const element = document.body;\n  const styles = getComputedStyle(element);\n  const coulTxt = styles.color;\n  const coulBg = styles.backgroundColor;\n  const switchThemeImg = document.getElementById(\"switch-theme\");\n  const logoImg = document.getElementById(\"logoImg\");\n  if (isDark) {\n    theme.style.background = coulTxt;\n    theme.style.color = coulBg;\n    logoImg.src = \"/src/img/logo-dark.webp\";\n    switchThemeImg.src = \"/src/img/bt-light.webp\";\n    menu.style.backgroundColor = coulTxt;\n    logo.style.background = \"rgb(29,0,173)\";\n    logo.style.background = \"linear-gradient(0deg, rgba(29,0,173,0) 0%, rgba(4,131,165,0.4) 100%)\";\n  } else {\n    theme.style.background = coulTxt;\n    theme.style.color = coulBg;\n    logoImg.src = \"/src/img/logo.webp\";\n    switchThemeImg.src = \"/src/img/bt-dark.webp\";\n    menu.style.backgroundColor = coulTxt;\n    logo.style.background = \"rgb(198,214,236)\";\n    logo.style.background = \"linear-gradient(0deg, rgba(198,214,236,0) 0%, rgba(198,214,236,1) 100%)\";\n  }\n}\n\n// Événement changement de thème\ndocument.getElementById(\"switch-theme\").addEventListener(\"click\", () => {\n  isDark = !isDark; // Inverse la valeur de isDark\n  swapTheme();\n});\n\n// Événement menu mobile\n\nconst styleBt = document.getElementById(\"styleBt\");\ndocument.getElementById(\"btMenu\").addEventListener(\"click\", () => {\n  if (menuOpen) {\n    menuOpen = false;\n    styleBt.style.opacity = 0;\n  } else {\n    menuOpen = true;\n    styleBt.style.opacity = 1;\n  }\n});\n\n// Événement Submit\nform.addEventListener(\"submit\", event => {\n  event.preventDefault();\n  const word = input.value;\n  (0,_api_dico_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(word, \"en\");\n});\n\n// Événement input focus\ninput.addEventListener(\"focus\", () => {\n  const erreur = document.querySelector(\"#erreur\");\n  erreur.textContent = \"\";\n});\n\n// Événement Lien Synonymes / Antonymes\ndocument.addEventListener(\"click\", event => {\n  const {\n    target\n  } = event;\n  if (target.tagName === \"A\" && target.className === \"lien\") {\n    event.preventDefault();\n    const content = target.textContent;\n    (0,_api_dico_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(content, \"en\");\n    input.value = content;\n  }\n});\n\n// Événement changement de police\ndocument.querySelectorAll('.switch-toggle input[type=\"radio\"]').forEach(input => {\n  input.addEventListener(\"change\", e => {\n    switch (e.target.id) {\n      case \"sansserif\":\n        definition.style.fontFamily = \"sans-serif\";\n        break;\n      case \"serif\":\n        definition.style.fontFamily = \"serif\";\n        break;\n      case \"monospace\":\n        definition.style.fontFamily = \"monospace\";\n        break;\n    }\n  });\n});\n\n// Initialisation du \"mot\" par défaut\n(0,_api_dico_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(\"welcome\", \"en\");\n\n//# sourceURL=webpack://my-webpack-project/./src/index.js?");
 
 /***/ }),
 
@@ -37,6 +37,76 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _scs
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n\n\n//# sourceURL=webpack://my-webpack-project/./src/scss/style.scss?");
+
+/***/ }),
+
+/***/ "./src/img/audio.webp":
+/*!****************************!*\
+  !*** ./src/img/audio.webp ***!
+  \****************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("module.exports = __webpack_require__.p + \"src/img/audio.webp\";\n\n//# sourceURL=webpack://my-webpack-project/./src/img/audio.webp?");
+
+/***/ }),
+
+/***/ "./src/img/bt-dark.webp":
+/*!******************************!*\
+  !*** ./src/img/bt-dark.webp ***!
+  \******************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("module.exports = __webpack_require__.p + \"src/img/bt-dark.webp\";\n\n//# sourceURL=webpack://my-webpack-project/./src/img/bt-dark.webp?");
+
+/***/ }),
+
+/***/ "./src/img/bt-light.webp":
+/*!*******************************!*\
+  !*** ./src/img/bt-light.webp ***!
+  \*******************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("module.exports = __webpack_require__.p + \"src/img/bt-light.webp\";\n\n//# sourceURL=webpack://my-webpack-project/./src/img/bt-light.webp?");
+
+/***/ }),
+
+/***/ "./src/img/logo-dark.webp":
+/*!********************************!*\
+  !*** ./src/img/logo-dark.webp ***!
+  \********************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("module.exports = __webpack_require__.p + \"src/img/logo-dark.webp\";\n\n//# sourceURL=webpack://my-webpack-project/./src/img/logo-dark.webp?");
+
+/***/ }),
+
+/***/ "./src/img/logo.webp":
+/*!***************************!*\
+  !*** ./src/img/logo.webp ***!
+  \***************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("module.exports = __webpack_require__.p + \"src/img/logo.webp\";\n\n//# sourceURL=webpack://my-webpack-project/./src/img/logo.webp?");
+
+/***/ }),
+
+/***/ "./src/img/loupe.webp":
+/*!****************************!*\
+  !*** ./src/img/loupe.webp ***!
+  \****************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("module.exports = __webpack_require__.p + \"src/img/loupe.webp\";\n\n//# sourceURL=webpack://my-webpack-project/./src/img/loupe.webp?");
+
+/***/ }),
+
+/***/ "./src/img/menu.webp":
+/*!***************************!*\
+  !*** ./src/img/menu.webp ***!
+  \***************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("module.exports = __webpack_require__.p + \"src/img/menu.webp\";\n\n//# sourceURL=webpack://my-webpack-project/./src/img/menu.webp?");
 
 /***/ })
 
@@ -79,6 +149,18 @@ eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extr
 /******/ 		};
 /******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/global */
+/******/ 	(() => {
+/******/ 		__webpack_require__.g = (function() {
+/******/ 			if (typeof globalThis === 'object') return globalThis;
+/******/ 			try {
+/******/ 				return this || new Function('return this')();
+/******/ 			} catch (e) {
+/******/ 				if (typeof window === 'object') return window;
+/******/ 			}
+/******/ 		})();
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
@@ -93,6 +175,29 @@ eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extr
 /******/ 			}
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/publicPath */
+/******/ 	(() => {
+/******/ 		var scriptUrl;
+/******/ 		if (__webpack_require__.g.importScripts) scriptUrl = __webpack_require__.g.location + "";
+/******/ 		var document = __webpack_require__.g.document;
+/******/ 		if (!scriptUrl && document) {
+/******/ 			if (document.currentScript)
+/******/ 				scriptUrl = document.currentScript.src;
+/******/ 			if (!scriptUrl) {
+/******/ 				var scripts = document.getElementsByTagName("script");
+/******/ 				if(scripts.length) {
+/******/ 					var i = scripts.length - 1;
+/******/ 					while (i > -1 && !scriptUrl) scriptUrl = scripts[i--].src;
+/******/ 				}
+/******/ 			}
+/******/ 		}
+/******/ 		// When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
+/******/ 		// or pass an empty string ("") and set the __webpack_public_path__ variable from your code to use your own logic.
+/******/ 		if (!scriptUrl) throw new Error("Automatic publicPath is not supported in this browser");
+/******/ 		scriptUrl = scriptUrl.replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/[^\/]+$/, "/");
+/******/ 		__webpack_require__.p = scriptUrl;
 /******/ 	})();
 /******/ 	
 /************************************************************************/

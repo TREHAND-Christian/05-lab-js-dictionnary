@@ -75,6 +75,7 @@ body {
 }
 
 #container {
+    margin: 0;
     display: flex;
     width: 100%;
     justify-items: center;
@@ -83,25 +84,22 @@ body {
 
 
 #main {
+    z-index: 100000;
     width: 100%;
     font-size: 0.875rem;
     display: grid;
     grid-template-columns: auto 385px 700px 84px auto;
     grid-template-rows: 5rem auto;
-    padding: 0.625rem;
 }
 
 
 #logo {
-    background-image: url("/src/img/logo.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    width: 100%;
-    height: 100%;
+    text-align: center;
     z-index: 0;
     grid-row: 1 ;
-    grid-column: 2 / 3 span;
+    grid-column: 1 / 5 span;
+    background: rgb(198,214,236);
+    background: linear-gradient(0deg, rgba(198,214,236,0) 0%, rgba(198,214,236,1) 100%);
 
 
 }
@@ -136,7 +134,7 @@ form {
 
 #btSubmit {
     background-color: $buttonColor;
-    background-image: url("/src/img/loupe.png");
+    background-image: url("/src/img/loupe.webp");
     background-size: 1.5625rem 1.5625rem;
     width: 1.875rem;
     height: 1.875rem;
@@ -153,8 +151,8 @@ form {
 
 #btMenu {
     position: absolute;
-    z-index: 1000;
-    background-image: url('/src/img/menu.png');
+    z-index: 100000;
+    background-image: url('/src/img/menu.webp');
     background-size: cover;
     grid-row: 2;
     grid-column: 4 / 2 span;
@@ -165,10 +163,10 @@ form {
 
 
 #styleBt {
-    z-index: 2000;
     position: absolute;
-    padding-right: 20px;
-    right: 35px;
+    padding-right: 0px;
+    margin-right: 0px;
+    right: 40px;
     width: 400px;
     opacity: 0;
     background-color: $lightColor;
@@ -279,7 +277,7 @@ form {
 }
 
 #playAudio {
-    background-image: url('/src/img/audio.png');
+    background-image: url('/src/img/audio.webp');
     background-repeat: no-repeat;
     background-size: contain;
     width: 2.5rem;
@@ -425,7 +423,7 @@ form {
 
 @media (max-width: 1280px) {
     #main {
-        grid-template-columns: auto 250px 500px 84px auto;
+        grid-template-columns: 10px 250px auto 84px 10px;
     }
 
     #word {
@@ -453,12 +451,12 @@ form {
     }
 }
 
-@media (max-width: 884px) {
+@media (max-width: 1280px) {
     #container {
 
     }
     #main {
-        grid-template-columns: auto 250px 500px 84px auto;
+        grid-template-columns: auto 250px auto 84px auto;
     }
 
 
@@ -493,29 +491,30 @@ form {
 }
 
 /* Media Queries */
-@media (max-width: 834px) {
+@media (max-width: 925px) {
 
     #main {
         box-sizing: border-box;
-        margin:  3%;
-        padding: 0;
         grid-template-columns: 100%;
         grid-template-rows: 5rem;
     }
 
     #formulaire {
+        margin: 0;
+        text-align: center;
+        justify-content: center;
+        width: 100%;
+        background-color: transparent;
+
         grid-column: 1;
     }
 
-
-    #btMenu {
-        position: absolute;
-        right: 10px;
-        grid-column: 1;
-        grid-row: 1;
-        display: flex;
+    #myForm {
+        background-color: $buttonColor;
     }
 
+
+ 
     #logo {
         grid-column: 1;
         grid-row: 1;
@@ -576,31 +575,66 @@ form {
         grid-row: 6;
     }
 
-    .def.def.active {
+    .def.active {
         font-size: 22px;
+    }
+
+    #btMenu {
+        z-index: 10000;
+        position: relative;
+        top : 0px;
+        right: 40px;
+        display: flex;
     }
 
     #styleBt {
         opacity: 0;
-        z-index: 10;
-        background-color: $lightColor;
-        width: 100%;
-        position: fixed;
-        top: 0;
-        left:0;
-        right: 0;
-        margin: auto;
+        z-index: 10000;
+        background-color: white;
+        top: 0px;
+        height: 150px;
+        width: 300px;
+        position: absolute;
+        margin-right : 0px ;
         transition: background-color 1s, color 1s, opacity 1s;
+        align-items: end;
         flex-direction: column;
-        align-items: center;
-        grid-column: 1;
-        grid-row: 7;
+        justify-content: right;
     }
 
-    #themeBt {
-        margin: 10px 0px 0rem 0px;
+    .switch-toggle {
+        flex-direction: column;
+        width: 100px;
+    }
+
+    #serif:checked~.btn-switch {
+        transform: translateY(0);
+    }
+    
+    #sansserif:checked~.btn-switch {
+        transform: translateY(35px);
+    }
+    
+    #monospace:checked~.btn-switch {
+        transform: translateY(70px);
+    }
+
+     #themeBt {
+        margin: 10px 10px 0rem 0px;
     }
 }
+
+@media (max-width: 320px) {
+    #formulaire {
+        justify-content: left;
+        width: 260px;
+    }
+    #styleBt {
+        width: 100%;
+    }
+
+}
+
 
 @media (prefers-color-scheme: dark) {
 

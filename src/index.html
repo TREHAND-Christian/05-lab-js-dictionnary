@@ -5,49 +5,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dictionary</title>
-    <link rel="preload" as="image" href="src/img/bt-light.png">
-    <link rel="preload" as="image" href="src/img/bt-dark.png">
-    <link rel="preload" as="image" href="src/img/logo.png">
-    <link rel="preload" as="image" href="src/img/logo-dark.png">
-
 </head>
+
 
 <body>
     </div>
     <div id="container">
         <div id="main">
-            <div id="btMenu"><div id="styleBt">
-                
-                <div class="switch-toggle">
-                    <input id="serif" name="style" type="radio">
-                    <label for="serif" onclick="">Serif</label>
-                    <input id="sansserif" name="style" type="radio" checked>
-                    <label for="sansserif" onclick="">Sans Serif</label>
-                    <input id="monospace" name="style" type="radio">
-                    <label for="monospace" onclick="">Monospace</label>
-                    <a class="btn-switch"></a>
-                </div>
+            <div id="formulaire">
+                <form id="myForm">
+                    <input type="text" id="myInput" placeholder="Enter any word">
+                    <input id="btSubmit" type="submit" value="">
+                    <div id="erreur"></div>
+                </form>
+            </div>
+            <div id="btMenu">
+                <div id="styleBt">
+                    <div class="switch-toggle">
+                        <input id="serif" name="style" type="radio">
+                        <label for="serif" onclick="">Serif</label>
+                        <input id="sansserif" name="style" type="radio" checked>
+                        <label for="sansserif" onclick="">Sans Serif</label>
+                        <input id="monospace" name="style" type="radio">
+                        <label for="monospace" onclick="">Monospace</label>
+                        <a class="btn-switch"></a>
+                    </div>
 
-                <div id="themeBt" class="btCenter">
-                    <img id="switch-theme" src="/src/img/bt-dark.png" alt="Switch Theme">
+                    <div id="themeBt" class="btCenter">
+                        <img id="switch-theme" src="/src/img/bt-dark.webp" alt="Switch Theme">
+                    </div>
                 </div>
             </div>
-</div>
-            <div id="logo"></div>
-                <div id="formulaire">
-                    <form id="myForm">
-                        <input type="text" id="myInput" placeholder="Enter any word">
-                        <input id="btSubmit" type="submit" value="">
-                        <div id="erreur"></div>
-                    </form>
-                </div>
-            
-            
-
+            <div id="logo"><img id="logoImg" src="/src/img/logo.webp" alt="logoImg" width="300" height="60"></div>
             <div id="response">
-                
             </div>
-
         </div>
 </body>
 

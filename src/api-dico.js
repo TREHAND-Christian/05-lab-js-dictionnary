@@ -89,6 +89,7 @@ function createTabsAndDefinitions(groupedMeanings, tabsElement, contentElement) 
             }
         });
     }
+    
 
     const firstTab = document.getElementById('tab-0');
     const firstContent = document.getElementById('def-0');
