@@ -2,28 +2,6 @@
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/scss/style.scss ***!
   \**************************************************************************************************************/
 @charset "UTF-8";
-li {
-  margin-bottom: 0.9375rem;
-  margin-left: 0px;
-  display: inline-block;
-  vertical-align: top;
-  margin-left: 1.25rem;
-}
-
-li::before {
-  content: "•";
-  margin-left: -0.9375rem;
-  margin-right: 0.625rem;
-}
-
-audio::-webkit-media-controls-panel {
-  background: rgb(198, 214, 236);
-}
-
-audio {
-  height: 2.5rem;
-}
-
 body {
   font-family: "NTR", sans-serif;
   font-size: 14px;
@@ -60,6 +38,28 @@ body {
   display: grid;
   grid-template-columns: auto 385px 700px 84px auto;
   grid-template-rows: 5rem auto;
+}
+
+li {
+  margin-bottom: 0.9375rem;
+  margin-left: 0px;
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 1.25rem;
+}
+
+li::before {
+  content: "•";
+  margin-left: -0.9375rem;
+  margin-right: 0.625rem;
+}
+
+audio::-webkit-media-controls-panel {
+  background: rgb(198, 214, 236);
+}
+
+audio {
+  height: 2.5rem;
 }
 
 #logo {
@@ -387,6 +387,9 @@ form {
 }
 
 @media (max-width: 1280px) {
+  body {
+    font-size: 1.5rem;
+  }
   #main {
     grid-template-columns: 10px 250px auto 84px 10px;
   }
@@ -408,8 +411,6 @@ form {
   #styleBt {
     margin-left: 1.875rem;
   }
-}
-@media (max-width: 1280px) {
   #main {
     grid-template-columns: auto 250px auto 84px auto;
   }
@@ -437,7 +438,10 @@ form {
   }
 }
 /* Media Queries */
-@media (max-width: 925px) {
+@media (max-width: 920px) {
+  body {
+    font-size: 1.2rem;
+  }
   #main {
     box-sizing: border-box;
     grid-template-columns: 100%;
@@ -474,7 +478,7 @@ form {
     grid-row: 2;
     grid-column: 1;
     text-transform: capitalize;
-    font-size: 56px;
+    font-size: 3.5rem;
   }
   #vocal {
     font-size: 32px;
@@ -485,34 +489,34 @@ form {
     grid-row: 3;
   }
   .lien {
-    font-size: 20px;
+    font-size: 1.25rem;
   }
   #synonyms {
-    font-size: 20px;
+    font-size: 1.25rem;
     margin-left: 1rem;
     grid-row: 4;
   }
   #antonyms {
-    font-size: 20px;
+    font-size: 1.25rem;
     margin-left: 1rem;
     grid-column: 1;
     grid-row: 5;
   }
   #defs {
-    font-size: 16px;
+    font-size: 1rem;
     padding: 1rem;
     margin: 0;
     grid-column: 1;
     grid-row: 6;
   }
   .def.active {
-    font-size: 22px;
+    font-size: 1.375rem;
   }
   #btMenu {
     z-index: 10000;
     position: relative;
     top: 0px;
-    right: 40px;
+    right: 2.5rem;
     display: flex;
   }
   #styleBt {
@@ -546,7 +550,7 @@ form {
     margin: 10px 10px 0rem 0px;
   }
 }
-@media (max-width: 320px) {
+@media (max-width: 340px) {
   #formulaire {
     justify-content: left;
     width: 260px;

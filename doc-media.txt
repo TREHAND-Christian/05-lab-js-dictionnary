@@ -1,0 +1,159 @@
+Bien sûr, voici le code qui combine toutes les parties pour votre cas :
+
+styles.scss :
+
+scss
+Copy code
+// Importez ici vos autres fichiers SCSS si nécessaire
+
+// Mixin pour media query
+@mixin respond($breakpoint) {
+  @if $breakpoint == phone {
+    @media (max-width: 413px) {
+      @content;
+    }
+  } @else if $breakpoint == dark {
+    @media (prefers-color-scheme: dark) {
+      @content;
+    }
+  } @else if $breakpoint == light {
+    @media (prefers-color-scheme: light) {
+      @content;
+    }
+  }
+}
+
+// ----------- MEDIA QUERIES POUR TOUS LES ÉCRANS -----------
+// Ajoutez ici les règles qui s'appliquent à tous les écrans
+
+// ----------- MEDIA 0px à 340px -----------
+@media (max-width: 340px) {
+  @import 'small-screen';
+}
+
+// ----------- MEDIA 341px à 920px -----------
+@media (min-width: 341px) and (max-width: 920px) {
+  @import 'medium-screen';
+}
+
+// ----------- MEDIA plus de 921px -----------
+@media (min-width: 921px) {
+  @import 'large-screen';
+}
+
+// ----------- MEDIA pour la taille de police adaptée au-dessus de 428px -----------
+@media (min-width: 428px) {
+  @import 'font-sizes';
+}
+
+// ----------- MEDIA POUR LE THÈME SOMBRE -----------
+@media (prefers-color-scheme: dark) {
+  @import 'dark-theme';
+}
+
+// ----------- MEDIA POUR LE THÈME CLAIR -----------
+@media (prefers-color-scheme: light) {
+  @import 'light-theme';
+}
+font-sizes.scss :
+
+scss
+Copy code
+// ----------- TAILLES DE POLICE POUR ÉCRANS DESSUS DE 428px -----------
+
+// Définir une taille de police de base
+$base-font-size: 16px;
+
+// Définir les tailles de police pour différents éléments en utilisant l'unité rem
+body {
+  font-size: $base-font-size;
+}
+
+h1 {
+  font-size: 2rem; // 2 fois la taille de la police de base
+}
+
+h2 {
+  font-size: 1.5rem; // 1.5 fois la taille de la police de base
+}
+
+p {
+  font-size: 1rem; // Taille de la police de base
+}
+
+// Ajoutez d'autres règles de taille de police pour les différents éléments
+small-screen.scss :
+
+scss
+Copy code
+// ----------- STYLES POUR LES PETITS ÉCRANS (0px à 340px) -----------
+
+// Ajoutez vos styles pour les petits écrans ici
+medium-screen.scss :
+
+scss
+Copy code
+// ----------- STYLES POUR LES ÉCRANS MOYENS (341px à 920px) -----------
+
+// Ajoutez vos styles pour les écrans moyens ici
+large-screen.scss :
+
+scss
+Copy code
+// ----------- STYLES POUR LES GRANDS ÉCRANS (plus de 921px) -----------
+
+// Ajoutez vos styles pour les grands écrans ici
+dark-theme.scss :
+
+scss
+Copy code
+// ----------- STYLES POUR LE THÈME SOMBRE -----------
+
+// Ajoutez vos styles spécifiques pour le thème sombre ici
+light-theme.scss :
+
+scss
+Copy code
+// ----------- STYLES POUR LE THÈME CLAIR -----------
+
+// Ajoutez vos styles spécifiques pour le thème clair ici
+index.html :
+
+html
+Copy code
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <!-- Les balises meta, titre, liens vers les fichiers CSS, etc. -->
+</head>
+<body>
+  <!-- Le contenu de votre page -->
+
+  <button id="themeButton">Changer le thème</button>
+
+  <!-- Le script JS pour changer le thème -->
+  <script src="votre-script.js"></script>
+</body>
+</html>
+votre-script.js :
+
+javascript
+Copy code
+const themeButton = document.getElementById('themeButton');
+const body = document.body;
+
+themeButton.addEventListener('click', () => {
+  // Vérifier si la classe 'dark-mode' existe sur <body>
+  const isDarkMode = body.classList.contains('dark-mode');
+
+  if (isDarkMode) {
+    // Supprimer la classe 'dark-mode' et ajouter la classe 'light-mode'
+    body.classList.remove('dark-mode');
+    body.classList.add('light-mode');
+  } else {
+    // Supprimer la classe 'light-mode' et ajouter la classe 'dark-mode'
+    body.classList.remove('light-mode');
+    body.classList.add('dark-mode');
+  }
+});
+Avec ce code, lorsque vous cliquez sur le bouton, cela ajoutera la classe dark-mode au <body> si le thème sombre est activé, ou la classe light-mode si le thème clair est activé. En fonction de la classe présente sur le <body>, les styles spécifiques pour le thème sombre ou clair seront appliqués grâce aux règles Media Queries définies dans le fichier styles.scss.

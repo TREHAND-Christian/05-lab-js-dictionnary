@@ -3,20 +3,17 @@ export default getAPI;
 const erreur = document.querySelector("#erreur");
 const API_VERSION = 'v2';
 const LANGUAGE = 'en';
+const BASE_URL = `https://api.dictionaryapi.dev/api/${API_VERSION}/entries/${LANGUAGE}/`;
 
-const constructAPI = (word, language = LANGUAGE, version = API_VERSION) => {
-    console.log(`https://api.dictionaryapi.dev/api/${version}/entries/${language}/${word}`);
-    return `https://api.dictionaryapi.dev/api/${version}/entries/${language}/${word}`;
+function constructAPI(word) {
+    return `${BASE_URL}${word}`;
 }
 
-const handleFetchErrors = (response, word, erreur) => {
+function handleFetchErrors(response) {
     if (!response.ok) {
-        if (response.status === 404) {
-            erreur.textContent = word ? 'No results found for this word.' : 'You did not enter any word.';
-        } else {
-            erreur.textContent = `HTTP error! status: ${response.status}`;
-        }
-        throw new Error(erreur.textContent);
+        const errorMessage = response.status === 404 ? 'Word not found.' : `HTTP error! status: ${response.status}. Something went wrong.`;
+        erreur.textContent = errorMessage;
+        throw new Error(errorMessage);
     }
     return response.json();
 }
@@ -33,64 +30,46 @@ function groupWordDefinitions(data) {
     }, {});
 }
 
-
 function createTabsAndDefinitions(groupedMeanings, tabsElement, contentElement) {
-    let tabIndex = 0;
     let tabsHTML = "";
     let contentHTML = "";
-    for (let partOfSpeech in groupedMeanings) {
-        const contentId = `def-${tabIndex}`;
-        tabsHTML += `<div id="tab-${tabIndex}" class="tab tab-light">${partOfSpeech}</div>`;
+    Object.keys(groupedMeanings).forEach((partOfSpeech, index) => {
+        const contentId = `def-${index}`;
+        tabsHTML += `<div id="tab-${index}" class="tab tab-light">${partOfSpeech}</div>`;
         contentHTML += `<ul id="${contentId}" class="def">`;
-        for (let def of groupedMeanings[partOfSpeech]) {
+        groupedMeanings[partOfSpeech].forEach(def => {
             contentHTML += `<li>${def.definition}</li>`;
-        }
+        });
         contentHTML += `</ul>`;
-        tabIndex++;
-    }
+    });
     tabsElement.innerHTML = tabsHTML;
     contentElement.innerHTML = contentHTML;
-
-    const tabs = document.getElementsByClassName('tab');
     const indicator = document.createElement('div');
     indicator.classList.add('tab-indicator');
     tabsElement.appendChild(indicator);
-
-    for (let tab of tabs) {
+    const deactivateAll = (activeId) => {
+        document.querySelectorAll('.def, .tab').forEach(el => {
+            if (el.id !== activeId) el.classList.remove('active');
+        });
+    };
+    tabsElement.querySelectorAll('.tab').forEach(tab => {
         tab.addEventListener('click', function () {
             const tabIndex = tab.id.split('-')[1];
             indicator.style.left = tab.offsetLeft + 'px';
             indicator.style.width = tab.offsetWidth + 'px';
             indicator.style.height = tab.offsetHeight + 'px';
-
             const def = document.getElementById(`def-${tabIndex}`);
             const isActive = def.classList.contains('active');
-
             if (!isActive) {
-                const allContents = document.getElementsByClassName('def');
-                for (let content of allContents) {
-                    if (content.id !== `def-${tabIndex}`) {
-                        content.classList.remove('active');
-                    }
-                }
-
-                const allTabs = document.getElementsByClassName('tab');
-                for (let t of allTabs) {
-                    if (t.id !== `tab-${tabIndex}`) {
-                        t.classList.remove('active');
-                    }
-                }
-
+                deactivateAll(`tab-${tabIndex}`);
+                deactivateAll(`def-${tabIndex}`);
                 tab.classList.add('active');
                 def.classList.add('active');
-
                 tab.style.transition = "all 0.5s ease-in-out";
                 def.style.transition = "all 0.5s ease-in-out";
             }
         });
-    }
-    
-
+    });
     const firstTab = document.getElementById('tab-0');
     const firstContent = document.getElementById('def-0');
     if (firstTab && firstContent) {
@@ -100,145 +79,104 @@ function createTabsAndDefinitions(groupedMeanings, tabsElement, contentElement) 
     }
 }
 
-
 function processRelationWords(data, element, relationType) {
     let html = `<h2>${relationType}</h2>`;
-    let list = [];
-
+    let wordsList = [];
     for (let wordDef of data) {
         for (let meaning of wordDef.meanings) {
-            let i = 0;
             if (meaning[relationType] && meaning[relationType].length > 0) {
-                html += `<li class="liSynonym">`;
-                for (let word of meaning[relationType]) {
-                    html += `<a href="" class="lien">${word}</a>`;
-                    if (i < meaning[relationType].length - 1) {
-                        html += " ";
-                    }
-                    i++;
-                }
-                html += `</li>`;
-                list.push(``);
+                const words = meaning[relationType].map(word => `<a href="#" class="lien">${word}</a>`).join(' ');
+                wordsList.push(`<li class="liSynonym">${words}</li>`);
             }
         }
     }
-
-    if (list.length > 0) {
-        html += `<ul>${list.join("")}</ul>`;
+    if (wordsList.length) {
+        html += `<ul>${wordsList.join("")}</ul>`;
         element.innerHTML = html;
+        element.querySelectorAll('a').forEach(anchor => {
+            anchor.addEventListener('click', function (event) {
+                event.preventDefault();
+                getAPI(anchor.textContent, 'en');
+            });
+        });
     } else {
         element.innerHTML = "";
     }
-
-    const anchors = document.querySelectorAll(`#${element.id} a`);
-
-    anchors.forEach(function (anchor) {
-        anchor.addEventListener('click', function (event) {
-            event.preventDefault();
-            const content = anchor.textContent;
-            getAPI(content, 'en');
-        });
-    });
 }
-
 
 const container = document.getElementById('response');
 
-const wordDiv = document.createElement('div');
-wordDiv.id = 'word';
+function createAndAppendDiv(parent, id, styleObj = null) {
+    const div = document.createElement('div');
+    div.id = id;
+    if (styleObj) Object.assign(div.style, styleObj);
+    parent.appendChild(div);
+    return div;
+}
 
-const vocalDiv = document.createElement('div');
-vocalDiv.id = 'vocal';
+function initializeDOMElements() {
+    const container = document.getElementById('response');
+    const createDiv = (parent, id, styles = {}) => {
+        const div = document.createElement('div');
+        div.id = id;
+        Object.assign(div.style, styles);
+        parent.appendChild(div);
+        return div;
+    };
 
-const phoneticDiv = document.createElement('div');
-phoneticDiv.id = 'phonetic';
+    return {
+        wordDiv: createDiv(container, 'word'),
+        audioElement: createDiv(createDiv(container, 'vocal'), 'audio'),
+        phoneticElement: createDiv(createDiv(container, 'vocal'), 'phonetic'),
+        tabsElement: createDiv(createDiv(container, 'defs'), 'tabs', { zIndex: '10' }),
+        contentElement: createDiv(createDiv(container, 'defs'), 'def'),
+        synonymsElement: createDiv(container, 'synonyms'),
+        antonymsElement: createDiv(container, 'antonyms')
+    };
+}
 
-const audioDiv = document.createElement('div');
-audioDiv.id = 'audio';
+const domElements = initializeDOMElements();
 
-const synonymsDiv = document.createElement('div');
-synonymsDiv.id = 'synonyms';
+function getAPI(word) {
+    if (!word) {
+        erreur.textContent = 'You did not enter any word.';
+        return;
+    }
 
-const antonymsDiv = document.createElement('div');
-antonymsDiv.id = 'antonyms';
-
-const defsDiv = document.createElement('div');
-defsDiv.id = 'defs';
-
-const tabsDiv = document.createElement('div');
-tabsDiv.id = 'tabs';
-tabsDiv.style.zIndex = '10';
-
-const defDiv = document.createElement('div');
-defDiv.id = 'def';
-
-// Ajouter les éléments dans la structure HTML
-vocalDiv.appendChild(phoneticDiv);
-vocalDiv.appendChild(audioDiv);
-
-defsDiv.appendChild(tabsDiv);
-defsDiv.appendChild(defDiv);
-
-container.appendChild(wordDiv);
-container.appendChild(vocalDiv);
-container.appendChild(synonymsDiv);
-container.appendChild(antonymsDiv);
-container.appendChild(defsDiv);
-
-// FONCTION getAPI
-function getAPI(word, language, version = 'v2') {
-    let API = constructAPI(word, language, version);
-    // ---------------------------------------------------------------------------------------
-    //          TRAITEMENT DE LA REPONSE            
-    // ---------------------------------------------------------------------------------------
+    const API = constructAPI(word);
     fetch(API)
-        .then(response => handleFetchErrors(response, word, erreur))
+        .then(handleFetchErrors)
         .then(data => {
-            // Récupérer les éléments
-            const wordElement = document.getElementById('word');
-            const audioElement = document.getElementById('audio');
-            const tabsElement = document.getElementById('tabs');
-            const contentElement = document.getElementById('def');
-            const synonymsElement = document.getElementById('synonyms');
-            const antonymsElement = document.getElementById('antonyms');
-            const phoneticElement = document.getElementById('phonetic');
-            const playerAudio = document.getElementById("playerAudio");
-            console.log(playerAudio);
-            // Mettre à jour les éléments
-            wordElement.textContent = data[0].word;
+            if (data && data.length > 0) {
+                const firstWord = data[0];
+                domElements.wordDiv.textContent = firstWord.word;
 
-            // Afficher la phonétique
+                // Handle phonetic
+                domElements.phoneticElement.innerHTML = `<span><p>Phonetic </p><p> ${firstWord.phonetic} </p><p id="playAudio"></p></span>`;
+                
+                // Handle audio
+                const audioData = firstWord.phonetics.find(item => item.audio);
+                if (audioData) {
+                    domElements.audioElement.innerHTML = `<audio id="playerAudio" controls src="${audioData.audio}"></audio>`;
+                    document.getElementById("playAudio").addEventListener("click", () => {
+                        document.getElementById("playerAudio").play();
+                    });
+                } else {
+                    domElements.audioElement.innerHTML = "";
+                }
+                
+                const groupedMeanings = groupWordDefinitions(data);
+                createTabsAndDefinitions(groupedMeanings, domElements.tabsElement, domElements.contentElement);
 
-            phoneticElement.innerHTML = `<span><p>Phonetic </p><p> ${data[0].phonetic} </p><p id="playAudio"></p></span>`;
-            const btAudio = document.getElementById("playAudio");
-
-            // Chercher l'audio avec une URL
-            const audioData = data[0].phonetics.find(item => item.audio !== '');
-            if (audioData) {
-                audioElement.innerHTML = `<audio id="playerAudio" controls src="${audioData.audio}"></audio>`;
-                const playerAudio = document.getElementById("playerAudio");
-                console.dir(playerAudio);
-                // Événement Play Audio
-                btAudio.addEventListener("click", () => {
-                    playerAudio.play();
-                });
-
+                processRelationWords(data, domElements.synonymsElement, 'synonyms');
+                processRelationWords(data, domElements.antonymsElement, 'antonyms');
             } else {
-                audioElement.innerHTML = "";
+                erreur.textContent = "Word not found.";
             }
-            // Regrouper les définitions
-            const groupedMeanings = groupWordDefinitions(data);
-            //          CREATION ET GESTION DES ONGLETS ET DES DEFINITIONS            
-            createTabsAndDefinitions(groupedMeanings, tabsElement, contentElement);
-            //          CREATION ET GESTION DES SYNONYMES           
-            processRelationWords(data, synonymsElement, 'synonyms');
-            //          CREATION ET GESTION DES ANTONYMES           
-            processRelationWords(data, antonymsElement, 'antonyms');
         })
-
         .catch(e => {
-            // Si une erreur se produit, affichez-la dans la console
-            erreur.value = "There was a problem...."
-            console.log('There was a problem with your fetch operation: ' + e.message);
+            erreur.textContent = e.message === 'Word not found.' ? e.message : "There was a problem...";
+            console.error('There was a problem with your fetch operation: ' + e.message);
         });
 }
+
